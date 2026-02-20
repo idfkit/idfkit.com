@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>idfkit — Modern Building Energy Simulation Toolkit</title>
+  <meta name="description" content="A fast, modern Python toolkit for EnergyPlus building energy simulation. O(1) lookups, automatic reference tracking, 3D visualization, and AI integration.">
+  <meta name="theme-color" content="#0a0e1a">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="idfkit — Modern Building Energy Simulation Toolkit">
+  <meta property="og:description" content="Fast, modern tools for EnergyPlus building energy simulation. From Python library to web editor to AI integration.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://idfkit.com">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <span class="nav-logo-icon">⚡</span>
+        <span class="nav-logo-text">idfkit</span>
+      </a>
+      <div class="nav-links">
+        <a href="#ecosystem" class="nav-link">Ecosystem</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#get-started" class="nav-link">Get Started</a>
+        <a href="https://github.com/idfkit" class="nav-link nav-link-github" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Open Source &middot; MIT License
+      </div>
+      <h1 class="hero-title">
+        <span class="hero-title-line">Modern tools for</span>
+        <span class="hero-title-line hero-title-gradient">building energy</span>
+        <span class="hero-title-line hero-title-gradient">simulation</span>
+      </h1>
+      <p class="hero-subtitle">
+        A fast, modern Python toolkit for EnergyPlus. From library to web editor to AI integration &mdash; everything you need to model, simulate, and optimize building energy performance.
+      </p>
+      <div class="hero-actions">
+        <a href="#get-started" class="btn btn-primary">
+          Get Started
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#ecosystem" class="btn btn-secondary">
+          Explore Ecosystem
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-value">4000x</span>
+          <span class="hero-stat-label">Faster lookups</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-value">55k+</span>
+          <span class="hero-stat-label">Weather stations</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-value">25</span>
+          <span class="hero-stat-label">AI tools via MCP</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll-indicator">
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Ecosystem Section -->
+  <section class="section section-ecosystem" id="ecosystem">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">The Ecosystem</span>
+        <h2 class="section-title">Three layers.<br>One mission.</h2>
+        <p class="section-subtitle">From Python scripting to visual editing to AI-powered workflows &mdash; choose the layer that fits your needs.</p>
+      </div>
+
+      <div class="ecosystem-grid">
+        <!-- idfkit core -->
+        <div class="eco-card" data-animate>
+          <div class="eco-card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="eco-card-label">Core Library</div>
+          <h3 class="eco-card-title">idfkit</h3>
+          <p class="eco-card-desc">A fast, modern Python toolkit for EnergyPlus with O(1) lookups, automatic reference tracking, and zero dependencies.</p>
+          <ul class="eco-card-features">
+            <li>O(1) dictionary-based object indexing</li>
+            <li>Live cross-object reference graph</li>
+            <li>IDF + epJSON dual format support</li>
+            <li>3D geometry &amp; thermal calculations</li>
+            <li>Sync, async &amp; batch simulation</li>
+            <li>EnergyPlus 8.9 through 25.2</li>
+          </ul>
+          <div class="eco-card-code">
+            <code>pip install idfkit</code>
+          </div>
+          <a href="https://github.com/idfkit/idfkit" class="eco-card-link" target="_blank" rel="noopener">
+            View on GitHub
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+
+        <!-- Envelop -->
+        <div class="eco-card eco-card-featured" data-animate>
+          <div class="eco-card-badge">Web App</div>
+          <div class="eco-card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 8l3 3-3 3M12 14h4"/></svg>
+          </div>
+          <div class="eco-card-label">Visual Editor</div>
+          <h3 class="eco-card-title">Envelop</h3>
+          <p class="eco-card-desc">A modern, browser-native EnergyPlus editor. Visual HVAC design, 3D geometry, schedule editing &mdash; zero installation required.</p>
+          <ul class="eco-card-features">
+            <li>Visual HVAC node-graph editor</li>
+            <li>Interactive 3D geometry viewer</li>
+            <li>Schedule editor with day/week/year</li>
+            <li>In-browser EnergyPlus via WASM</li>
+            <li>Dark mode &amp; responsive design</li>
+            <li>Import/export IDF &amp; epJSON</li>
+          </ul>
+          <div class="eco-card-code">
+            <code>Zero installation &middot; Just open your browser</code>
+          </div>
+          <a href="https://github.com/idfkit/idfkit-app" class="eco-card-link" target="_blank" rel="noopener">
+            View on GitHub
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+
+        <!-- idfkit-mcp -->
+        <div class="eco-card" data-animate>
+          <div class="eco-card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+          </div>
+          <div class="eco-card-label">AI Integration</div>
+          <h3 class="eco-card-title">idfkit-mcp</h3>
+          <p class="eco-card-desc">An MCP server that exposes building energy modeling to AI agents. Let Claude author, validate, and simulate EnergyPlus models.</p>
+          <ul class="eco-card-features">
+            <li>25 MCP tools for full workflow</li>
+            <li>Schema discovery &amp; validation</li>
+            <li>Model authoring &amp; modification</li>
+            <li>Weather station integration</li>
+            <li>Simulation execution &amp; results</li>
+            <li>stdio &amp; HTTP transport modes</li>
+          </ul>
+          <div class="eco-card-code">
+            <code>uvx idfkit-mcp</code>
+          </div>
+          <a href="https://github.com/idfkit/idfkit-mcp" class="eco-card-link" target="_blank" rel="noopener">
+            View on GitHub
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section section-features" id="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Why idfkit</span>
+        <h2 class="section-title">Built for performance.<br>Designed for humans.</h2>
+        <p class="section-subtitle">Legacy tools hold you back. idfkit is built from the ground up for speed, correctness, and developer experience.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card" data-animate>
+          <div class="feature-icon feature-icon-speed">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <h3 class="feature-title">4,000x faster</h3>
+          <p class="feature-desc">O(1) dictionary-based lookups vs linear scans. On a 1,700-object IDF, idfkit is 4,000x faster than eppy.</p>
+        </div>
+
+        <div class="feature-card" data-animate>
+          <div class="feature-icon feature-icon-refs">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><circle cx="18" cy="6" r="3"/><path d="M8.6 7.4L15.4 16.6M8.6 4.8h6.8"/></svg>
+          </div>
+          <h3 class="feature-title">Reference tracking</h3>
+          <p class="feature-desc">Automatic live graph of cross-object relationships. Rename a zone and every reference updates instantly.</p>
+        </div>
+
+        <div class="feature-card" data-animate>
+          <div class="feature-icon feature-icon-zero">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 7l-8 4-8-4"/><path d="M20 11l-8 4-8-4"/><rect x="4" y="3" width="16" height="18" rx="2"/></svg>
+          </div>
+          <h3 class="feature-title">Zero dependencies</h3>
+          <p class="feature-desc">Core library uses only the Python standard library. Optional extras for pandas, plotting, and cloud storage.</p>
+        </div>
+
+        <div class="feature-card" data-animate>
+          <div class="feature-icon feature-icon-3d">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z"/><path d="M12 22V12M12 12L2 7M12 12l10-5"/></svg>
+          </div>
+          <h3 class="feature-title">3D geometry</h3>
+          <p class="feature-desc">Built-in Vector3D and Polygon3D classes. Calculate surface areas, zone volumes, and coordinate transforms natively.</p>
+        </div>
+
+        <div class="feature-card" data-animate>
+          <div class="feature-icon feature-icon-weather">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          </div>
+          <h3 class="feature-title">55,000+ weather stations</h3>
+          <p class="feature-desc">Search by location or coordinates. Download EPW and DDY files. Inject design days automatically.</p>
+        </div>
+
+        <div class="feature-card" data-animate>
+          <div class="feature-icon feature-icon-ai">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a4 4 0 014 4c0 1.95-1.4 3.58-3.25 3.93"/><path d="M8.75 9.93A4 4 0 1112 2"/><circle cx="12" cy="16" r="2"/><path d="M12 18v4"/><path d="M8 22h8"/></svg>
+          </div>
+          <h3 class="feature-title">AI-native</h3>
+          <p class="feature-desc">MCP server with 25 tools lets AI agents author, validate, and run energy simulations autonomously.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Code Preview Section -->
+  <section class="section section-code" id="get-started">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Quick Start</span>
+        <h2 class="section-title">Up and running<br>in seconds.</h2>
+      </div>
+
+      <div class="code-tabs">
+        <div class="code-tab-buttons">
+          <button class="code-tab-btn active" data-tab="python">Python</button>
+          <button class="code-tab-btn" data-tab="mcp">MCP / AI</button>
+          <button class="code-tab-btn" data-tab="web">Web App</button>
+        </div>
+
+        <div class="code-panel active" data-panel="python">
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-dot code-dot-red"></span>
+              <span class="code-dot code-dot-yellow"></span>
+              <span class="code-dot code-dot-green"></span>
+              <span class="code-filename">quickstart.py</span>
+            </div>
+            <pre><code><span class="code-comment"># Install</span>
+<span class="code-keyword">pip install</span> idfkit
+
+<span class="code-comment"># Load a model</span>
+<span class="code-keyword">from</span> idfkit <span class="code-keyword">import</span> load
+
+model = load(<span class="code-string">"building.idf"</span>)
+
+<span class="code-comment"># O(1) lookup by name</span>
+zone = model[<span class="code-string">"Zone"</span>][<span class="code-string">"Office_Floor_1"</span>]
+
+<span class="code-comment"># Automatic reference tracking</span>
+zone.name = <span class="code-string">"Main_Office"</span>
+<span class="code-comment"># ^ All referencing objects update automatically</span>
+
+<span class="code-comment"># Run simulation</span>
+results = model.simulate()
+<span class="code-keyword">print</span>(results.summary())</code></pre>
+          </div>
+        </div>
+
+        <div class="code-panel" data-panel="mcp">
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-dot code-dot-red"></span>
+              <span class="code-dot code-dot-yellow"></span>
+              <span class="code-dot code-dot-green"></span>
+              <span class="code-filename">claude_desktop_config.json</span>
+            </div>
+            <pre><code><span class="code-comment">// Add to your Claude MCP config</span>
+{
+  <span class="code-string">"mcpServers"</span>: {
+    <span class="code-string">"idfkit"</span>: {
+      <span class="code-string">"command"</span>: <span class="code-string">"uvx"</span>,
+      <span class="code-string">"args"</span>: [<span class="code-string">"idfkit-mcp"</span>]
+    }
+  }
+}
+
+<span class="code-comment">// Then ask Claude:</span>
+<span class="code-comment">// "Create an office building model</span>
+<span class="code-comment">//  with 3 zones and run an annual</span>
+<span class="code-comment">//  simulation for Denver, CO"</span></code></pre>
+          </div>
+        </div>
+
+        <div class="code-panel" data-panel="web">
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-dot code-dot-red"></span>
+              <span class="code-dot code-dot-yellow"></span>
+              <span class="code-dot code-dot-green"></span>
+              <span class="code-filename">No installation needed</span>
+            </div>
+            <pre><code><span class="code-comment"># Envelop runs entirely in your browser</span>
+
+<span class="code-keyword">1.</span> Open Envelop in any modern browser
+<span class="code-keyword">2.</span> Import an IDF or start from scratch
+<span class="code-keyword">3.</span> Design HVAC systems visually
+<span class="code-keyword">4.</span> Edit schedules with intuitive UI
+<span class="code-keyword">5.</span> View 3D geometry in real-time
+<span class="code-keyword">6.</span> Simulate with in-browser EnergyPlus
+
+<span class="code-comment"># Powered by WebAssembly</span>
+<span class="code-comment"># No server required</span>
+<span class="code-comment"># Works offline</span></code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section section-cta">
+    <div class="container">
+      <div class="cta-card" data-animate>
+        <h2 class="cta-title">Ready to modernize your energy modeling workflow?</h2>
+        <p class="cta-desc">Join the community building the future of building energy simulation.</p>
+        <div class="cta-actions">
+          <a href="https://github.com/idfkit/idfkit" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            Star on GitHub
+          </a>
+          <a href="https://github.com/idfkit" class="btn btn-secondary btn-lg" target="_blank" rel="noopener">
+            Browse All Projects
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="nav-logo-icon">⚡</span>
+          <span class="nav-logo-text">idfkit</span>
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com/idfkit/idfkit" target="_blank" rel="noopener">idfkit</a>
+          <a href="https://github.com/idfkit/idfkit-app" target="_blank" rel="noopener">Envelop</a>
+          <a href="https://github.com/idfkit/idfkit-mcp" target="_blank" rel="noopener">idfkit-mcp</a>
+        </div>
+        <div class="footer-copy">
+          MIT License &middot; Made with energy
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Main script -->
+  <script src="js/main.js"></script>
+</body>
+</html>
