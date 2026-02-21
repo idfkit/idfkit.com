@@ -198,33 +198,8 @@ img {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   overflow: hidden;
-}
-
-@media (min-width: 1200px) {
-  .hero {
-    justify-content: flex-start;
-  }
-
-  .hero-content {
-    text-align: left;
-    max-width: 560px;
-    margin-left: max(48px, 6vw);
-  }
-
-  .hero-subtitle {
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  .hero-actions {
-    justify-content: flex-start;
-  }
-
-  .hero-stats {
-    justify-content: flex-start;
-  }
 }
 
 #hero-canvas {
@@ -244,18 +219,19 @@ img {
   bottom: 0;
   z-index: 2;
   background:
-    radial-gradient(ellipse at center, transparent 0%, var(--color-bg) 75%),
-    linear-gradient(180deg, transparent 60%, var(--color-bg) 100%);
+    radial-gradient(ellipse at center, transparent 0%, var(--color-bg) 80%),
+    linear-gradient(180deg, transparent 65%, var(--color-bg) 100%);
   pointer-events: none;
 }
 
 .hero-content {
   position: relative;
   z-index: 3;
-  text-align: center;
-  max-width: 800px;
+  text-align: left;
+  max-width: 560px;
   padding: 0 24px;
   padding-top: 72px;
+  margin-left: max(24px, 6vw);
 }
 
 .hero-badge {
@@ -305,7 +281,7 @@ img {
   font-size: clamp(1rem, 1.8vw, 1.18rem);
   color: var(--color-text-muted);
   max-width: 600px;
-  margin: 0 auto 40px;
+  margin: 0 0 40px;
   line-height: 1.7;
   animation: fadeInUp 0.8s var(--ease-out-expo) 0.5s both;
 }
@@ -313,7 +289,7 @@ img {
 .hero-actions {
   display: flex;
   gap: 16px;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   margin-bottom: 60px;
   animation: fadeInUp 0.8s var(--ease-out-expo) 0.65s both;
@@ -322,7 +298,7 @@ img {
 .hero-stats {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 32px;
   animation: fadeInUp 0.8s var(--ease-out-expo) 0.8s both;
 }
@@ -1001,8 +977,20 @@ img {
     display: none;
   }
 
+  .hero-content {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 90%;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
   .hero-stats {
     flex-direction: column;
+    justify-content: center;
     gap: 16px;
   }
 
@@ -1034,7 +1022,7 @@ img {
 
   .hero-actions {
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
   }
 
   .btn {

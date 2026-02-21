@@ -31,7 +31,7 @@
 
   // ── Responsive offset — shift scene right on wide screens ──
   function getSceneOffset() {
-    return window.innerWidth >= 1200 ? 2.8 : 0;
+    return 0;
   }
   let sceneOffsetX = getSceneOffset();
 
@@ -153,7 +153,7 @@
         vertexColors: true, transparent: true, opacity: 0,
       });
       const line = new THREE.Line(geom, mat);
-      line.userData = { delay: 0.4 + i * 0.07, target: 0.9 };
+      line.userData = { delay: 0.4 + i * 0.07, target: 1.0 };
       g.add(line);
     });
 
@@ -657,12 +657,12 @@
   function buildEnvelopeGlow() {
     const g = new THREE.Group();
     const w = 4.5, h = 2.8, d = 3.2;
-    const scale = 1.15; // slightly larger than shoebox
-    const hw = w / 2 * scale, hh = h / 2 * scale, hd = d / 2 * scale;
 
-    const verts = [
-      [-hw, -hh, -hd], [hw, -hh, -hd], [hw, hh, -hd], [-hw, hh, -hd],
-      [-hw, -hh, hd],  [hw, -hh, hd],  [hw, hh, hd],  [-hw, hh, hd],
+    // Multiple glow shells at increasing scales for a bloom effect
+    const shells = [
+      { scale: 1.04, color: C.coolLight, target: 0.35, linewidth: 1 },
+      { scale: 1.10, color: C.cool,      target: 0.20, linewidth: 1 },
+      { scale: 1.18, color: C.coolDeep,  target: 0.10, linewidth: 1 },
     ];
 
     const edges = [
@@ -671,21 +671,29 @@
       [0,4],[1,5],[2,6],[3,7],
     ];
 
-    edges.forEach((e, i) => {
-      const a = new THREE.Vector3(...verts[e[0]]);
-      const b = new THREE.Vector3(...verts[e[1]]);
-      const segs = 20;
-      const pts = [];
-      for (let j = 0; j <= segs; j++) {
-        pts.push(new THREE.Vector3().lerpVectors(a, b, j / segs));
-      }
-      const geom = new THREE.BufferGeometry().setFromPoints(pts);
-      const mat = new THREE.LineBasicMaterial({
-        color: C.cool, transparent: true, opacity: 0,
+    shells.forEach((shell, si) => {
+      const hw = w / 2 * shell.scale, hh = h / 2 * shell.scale, hd = d / 2 * shell.scale;
+      const verts = [
+        [-hw, -hh, -hd], [hw, -hh, -hd], [hw, hh, -hd], [-hw, hh, -hd],
+        [-hw, -hh, hd],  [hw, -hh, hd],  [hw, hh, hd],  [-hw, hh, hd],
+      ];
+
+      edges.forEach((e, i) => {
+        const a = new THREE.Vector3(...verts[e[0]]);
+        const b = new THREE.Vector3(...verts[e[1]]);
+        const segs = 20;
+        const pts = [];
+        for (let j = 0; j <= segs; j++) {
+          pts.push(new THREE.Vector3().lerpVectors(a, b, j / segs));
+        }
+        const geom = new THREE.BufferGeometry().setFromPoints(pts);
+        const mat = new THREE.LineBasicMaterial({
+          color: shell.color, transparent: true, opacity: 0,
+        });
+        const line = new THREE.Line(geom, mat);
+        line.userData = { delay: 1.0 + si * 0.3 + i * 0.04, target: shell.target };
+        g.add(line);
       });
-      const line = new THREE.Line(geom, mat);
-      line.userData = { delay: 3.0 + i * 0.04, target: 0.06 };
-      g.add(line);
     });
 
     return g;
@@ -819,6 +827,15 @@
     const br = 1 + Math.sin(elapsed * 0.4) * 0.008;
     shoebox.scale.set(br, br, br);
 
+    // Envelope glow pulse — gentle oscillating brightness
+    const glowPulse = 0.8 + Math.sin(elapsed * 0.6) * 0.2;
+    envelopeGlow.children.forEach((child) => {
+      if (child.material && child.userData && child.userData.target !== undefined) {
+        const baseOp = child.userData.target;
+        child.userData._glowMul = glowPulse;
+      }
+    });
+
     // Scroll parallax & fade
     const scrollFade = Math.max(0, 1 - sy / (window.innerHeight * 0.55));
     world.position.y = -sy * 0.0015;
@@ -827,7 +844,8 @@
     world.traverse((obj) => {
       if (obj.material && obj.userData && obj.userData.target !== undefined) {
         if (elapsed > (obj.userData.delay || 0) + 0.9) {
-          obj.material.opacity = obj.userData.target * scrollFade;
+          const glowMul = obj.userData._glowMul || 1;
+          obj.material.opacity = obj.userData.target * scrollFade * glowMul;
         }
       }
     });
