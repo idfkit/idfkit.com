@@ -12,6 +12,16 @@
   const canvas = document.getElementById('hero-canvas');
   if (!canvas) return;
 
+  // ── WebGL support check ─────────────────────────────
+  try {
+    const testCanvas = document.createElement('canvas');
+    const gl = testCanvas.getContext('webgl') || testCanvas.getContext('experimental-webgl');
+    if (!gl) throw new Error('WebGL not supported');
+  } catch (e) {
+    canvas.style.display = 'none';
+    return;
+  }
+
   // ── Renderer ───────────────────────────────────────
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(
@@ -29,11 +39,7 @@
   camera.position.set(0, 2.5, 14);
   camera.lookAt(0, 0, 0);
 
-  // ── Responsive offset — shift scene right on wide screens ──
-  function getSceneOffset() {
-    return 0;
-  }
-  let sceneOffsetX = getSceneOffset();
+  let sceneOffsetX = 0;
 
   // ── Mouse ──────────────────────────────────────────
   const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
@@ -818,9 +824,6 @@
     world.rotation.y = Math.sin(elapsed * 0.08) * 0.35 + mouse.x * 0.12;
     world.rotation.x = Math.sin(elapsed * 0.06) * 0.06 + mouse.y * 0.06 - 0.08;
 
-    // Smooth offset toward right on wide screens
-    const targetOff = getSceneOffset();
-    sceneOffsetX += (targetOff - sceneOffsetX) * 0.03;
     world.position.x = sceneOffsetX;
 
     // Subtle breathing
@@ -831,7 +834,6 @@
     const glowPulse = 0.8 + Math.sin(elapsed * 0.6) * 0.2;
     envelopeGlow.children.forEach((child) => {
       if (child.material && child.userData && child.userData.target !== undefined) {
-        const baseOp = child.userData.target;
         child.userData._glowMul = glowPulse;
       }
     });
@@ -868,7 +870,6 @@
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
     renderer.setSize(w, h);
-    sceneOffsetX = getSceneOffset();
   });
 })();
 
@@ -913,9 +914,13 @@
   const panels = document.querySelectorAll('.code-panel');
   btns.forEach((btn) => {
     btn.addEventListener('click', () => {
-      btns.forEach((b) => b.classList.remove('active'));
+      btns.forEach((b) => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
       panels.forEach((p) => p.classList.remove('active'));
       btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
       const t = document.querySelector(`[data-panel="${btn.dataset.tab}"]`);
       if (t) t.classList.add('active');
     });
