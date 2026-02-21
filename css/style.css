@@ -80,7 +80,7 @@ img {
 /* --- Navigation --- */
 .nav {
   position: fixed;
-  top: 0;
+  top: 41px; /* below the beta bar */
   left: 0;
   right: 0;
   z-index: 100;
@@ -230,7 +230,7 @@ img {
   text-align: left;
   max-width: 560px;
   padding: 0 24px;
-  padding-top: 72px;
+  padding-top: 113px; /* beta bar (41px) + nav (72px) */
   margin-left: max(24px, 6vw);
 }
 
@@ -712,7 +712,10 @@ img {
   background: linear-gradient(90deg, rgba(59, 130, 246, 0.12) 0%, rgba(139, 92, 246, 0.12) 100%);
   border-bottom: 1px solid rgba(59, 130, 246, 0.15);
   padding: 10px 24px;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 101;
 }
 
