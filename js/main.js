@@ -29,6 +29,12 @@
   camera.position.set(0, 2.5, 14);
   camera.lookAt(0, 0, 0);
 
+  // ── Responsive offset — shift scene right on wide screens ──
+  function getSceneOffset() {
+    return window.innerWidth >= 1200 ? 2.8 : 0;
+  }
+  let sceneOffsetX = getSceneOffset();
+
   // ── Mouse ──────────────────────────────────────────
   const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
 
@@ -62,7 +68,7 @@
   // ============================================================
   function buildGroundGrid() {
     const g = new THREE.Group();
-    const size = 18, div = 36, y = -1.5;
+    const size = 24, div = 48, y = -1.5;
     const step = size / div;
 
     for (let i = 0; i <= div; i++) {
@@ -210,16 +216,28 @@
     const strings = [];
 
     const paths = [
-      // Solar rays from upper right
-      { a: [7, 7, -2],   b: [1.8, 1.4, 0.3],  c1: C.warmHot,  c2: C.warmMid },
-      { a: [6, 6.5, 0],  b: [0.8, 1.4, 1.0],  c1: C.warmHot,  c2: C.warm },
-      { a: [8, 6, -1],   b: [2.2, 1.4, -0.8], c1: C.warmHot,  c2: C.warmMid },
-      { a: [5.5, 7, 1],  b: [-0.5, 1.4, 1.2], c1: C.warm,     c2: C.warmGlow },
-      { a: [7.5, 5.5, -3], b: [1.5, 1.4, -1.5], c1: C.warmHot, c2: C.warm },
+      // Solar rays from upper right — primary cluster
+      { a: [7, 7, -2],     b: [1.8, 1.4, 0.3],   c1: C.warmHot,  c2: C.warmMid },
+      { a: [6, 6.5, 0],    b: [0.8, 1.4, 1.0],   c1: C.warmHot,  c2: C.warm },
+      { a: [8, 6, -1],     b: [2.2, 1.4, -0.8],  c1: C.warmHot,  c2: C.warmMid },
+      { a: [5.5, 7, 1],    b: [-0.5, 1.4, 1.2],  c1: C.warm,     c2: C.warmGlow },
+      { a: [7.5, 5.5, -3], b: [1.5, 1.4, -1.5],  c1: C.warmHot,  c2: C.warm },
+
+      // Additional solar rays — wider spread
+      { a: [9, 7.5, -1.5], b: [2.0, 1.4, -0.2],  c1: C.warmHot,  c2: C.warmGlow },
+      { a: [6.5, 8, 1.5],  b: [0.2, 1.4, 0.8],   c1: C.warm,     c2: C.warmMid },
+      { a: [8.5, 5, -4],   b: [1.0, 1.4, -1.2],  c1: C.warmHot,  c2: C.warm },
+      { a: [5, 8.5, -0.5], b: [-1.2, 1.4, 0.5],  c1: C.warm,     c2: C.warmGlow },
+      { a: [7, 5.8, 2],    b: [0.5, 1.4, 1.5],   c1: C.warmHot,  c2: C.warmMid },
+      { a: [9.5, 6.5, 0],  b: [2.25, 1.0, 0.6],  c1: C.warmHot,  c2: C.warm },
+      { a: [6, 9, -1],     b: [-0.8, 1.4, -0.3],  c1: C.warm,     c2: C.warmGlow },
 
       // Internal heat rising (occupancy, equipment)
-      { a: [-0.5, -1.5, 0],  b: [-0.5, 0.5, 0.3], c1: C.warmGlow, c2: C.warmMid },
-      { a: [1.0, -1.5, 0.5], b: [1.0, 0.5, 0.8],  c1: C.warmGlow, c2: C.warm },
+      { a: [-0.5, -1.5, 0],   b: [-0.5, 0.5, 0.3],  c1: C.warmGlow, c2: C.warmMid },
+      { a: [1.0, -1.5, 0.5],  b: [1.0, 0.5, 0.8],   c1: C.warmGlow, c2: C.warm },
+      { a: [0.3, -1.5, -0.5], b: [0.3, 0.8, -0.2],  c1: C.warmGlow, c2: C.warmMid },
+      { a: [-1.2, -1.5, 0.8], b: [-1.2, 0.3, 1.0],  c1: C.warmGlow, c2: C.warm },
+      { a: [1.5, -1.5, -0.3], b: [1.5, 0.6, 0.0],   c1: C.warmGlow, c2: C.warmMid },
     ];
 
     paths.forEach((p, i) => {
@@ -283,16 +301,28 @@
 
     const paths = [
       // Heat loss through walls (outward from building)
-      { a: [2.25, 0, 1.6],  b: [4.5, 0.5, 4.0],  c1: C.cool,     c2: C.coolIce },
-      { a: [-2.25, 0.5, 1.6], b: [-4.5, 1.0, 3.5], c1: C.cool,   c2: C.coolLight },
-      { a: [0, 1.4, 1.6],   b: [0, 3.5, 4.5],     c1: C.coolDeep, c2: C.coolIce },
-      { a: [2.25, 0.8, -1.6], b: [5, 1.2, -3.5],  c1: C.cool,     c2: C.coolIce },
-      { a: [-2.25, -0.3, -1.6], b: [-4, -0.5, -4], c1: C.coolDeep, c2: C.coolLight },
+      { a: [2.25, 0, 1.6],      b: [4.5, 0.5, 4.0],    c1: C.cool,     c2: C.coolIce },
+      { a: [-2.25, 0.5, 1.6],   b: [-4.5, 1.0, 3.5],   c1: C.cool,     c2: C.coolLight },
+      { a: [0, 1.4, 1.6],       b: [0, 3.5, 4.5],       c1: C.coolDeep, c2: C.coolIce },
+      { a: [2.25, 0.8, -1.6],   b: [5, 1.2, -3.5],      c1: C.cool,     c2: C.coolIce },
+      { a: [-2.25, -0.3, -1.6], b: [-4, -0.5, -4],       c1: C.coolDeep, c2: C.coolLight },
+
+      // Additional wall heat loss — more directions
+      { a: [2.25, 1.0, 0.5],    b: [5.5, 1.8, 2.0],     c1: C.cool,     c2: C.coolIce },
+      { a: [-2.25, 0.8, -0.5],  b: [-5.5, 1.5, -2.5],   c1: C.cool,     c2: C.coolLight },
+      { a: [1.5, 1.4, -1.6],    b: [3.5, 3.0, -4.0],    c1: C.coolDeep, c2: C.coolIce },
+      { a: [-1.5, 1.4, 1.6],    b: [-3.5, 3.0, 4.0],    c1: C.coolDeep, c2: C.coolLight },
+      { a: [2.25, -0.5, 0],     b: [5.0, -0.8, 1.5],    c1: C.cool,     c2: C.coolIce },
+      { a: [-2.25, -0.5, 0],    b: [-5.0, -0.8, -1.5],  c1: C.cool,     c2: C.coolLight },
+      { a: [0, 1.4, -1.6],      b: [0, 3.8, -5.0],      c1: C.coolDeep, c2: C.coolIce },
 
       // Ground heat exchange (downward)
-      { a: [-1.2, -1.5, 0],  b: [-1.8, -5, 0.5],  c1: C.coolLight, c2: C.coolDeep },
-      { a: [1.2, -1.5, 0.5], b: [1.8, -4.5, 1.0], c1: C.coolLight, c2: C.coolDeep },
-      { a: [0, -1.5, -0.5],  b: [0.3, -4, -1.0],  c1: C.cool,      c2: C.coolDeep },
+      { a: [-1.2, -1.5, 0],     b: [-1.8, -5, 0.5],     c1: C.coolLight, c2: C.coolDeep },
+      { a: [1.2, -1.5, 0.5],    b: [1.8, -4.5, 1.0],    c1: C.coolLight, c2: C.coolDeep },
+      { a: [0, -1.5, -0.5],     b: [0.3, -4, -1.0],     c1: C.cool,      c2: C.coolDeep },
+      { a: [-0.5, -1.5, 1.0],   b: [-0.8, -5.5, 1.5],   c1: C.coolLight, c2: C.coolDeep },
+      { a: [0.8, -1.5, -1.0],   b: [1.2, -5.0, -1.5],   c1: C.cool,      c2: C.coolDeep },
+      { a: [-1.8, -1.5, -0.8],  b: [-2.5, -4.8, -1.2],  c1: C.coolLight, c2: C.coolDeep },
     ];
 
     paths.forEach((p, i) => {
@@ -347,7 +377,7 @@
   //  6. AMBIENT PARTICLES — floating data points
   // ============================================================
   function buildParticles() {
-    const count = 160;
+    const count = 240;
     const pos = new Float32Array(count * 3);
     const cols = new Float32Array(count * 3);
     const vel = [];
@@ -400,7 +430,7 @@
   // ============================================================
   function buildConnections() {
     const g = new THREE.Group();
-    const n = 45;
+    const n = 65;
     const nodes = [];
 
     for (let i = 0; i < n; i++) {
@@ -415,8 +445,8 @@
     }
 
     let count = 0;
-    for (let i = 0; i < n && count < 55; i++) {
-      for (let j = i + 1; j < n && count < 55; j++) {
+    for (let i = 0; i < n && count < 80; i++) {
+      for (let j = i + 1; j < n && count < 80; j++) {
         const d = nodes[i].distanceTo(nodes[j]);
         if (d < 3.8) {
           const geom = new THREE.BufferGeometry().setFromPoints([nodes[i], nodes[j]]);
@@ -475,6 +505,193 @@
   }
 
   // ============================================================
+  //  9. CONVECTION ARCS — looping airflow lines inside building
+  // ============================================================
+  function buildConvectionArcs() {
+    const g = new THREE.Group();
+    const strings = [];
+    const w = 4.5, h = 2.8, d = 3.2;
+    const hw = w / 2, hh = h / 2, hd = d / 2;
+
+    // Circular-ish arcs inside the building representing air movement
+    const arcs = [
+      // Left zone — clockwise convection loop
+      { cx: -hw * 0.6, cz: 0, rx: 0.6, ry: 1.0, startAngle: 0, dir: 1,
+        c1: C.warmGlow, c2: C.coolLight },
+      // Center zone — counter-clockwise
+      { cx: 0, cz: 0.2, rx: 0.8, ry: 1.1, startAngle: Math.PI * 0.5, dir: -1,
+        c1: C.warm, c2: C.cool },
+      // Right zone — clockwise
+      { cx: hw * 0.6, cz: -0.1, rx: 0.6, ry: 1.0, startAngle: Math.PI, dir: 1,
+        c1: C.warmGlow, c2: C.coolLight },
+      // Front-to-back draft
+      { cx: 0, cz: 0, rx: 1.2, ry: 0.5, startAngle: 0, dir: 1,
+        c1: C.cool, c2: C.warm },
+    ];
+
+    arcs.forEach((arc, i) => {
+      const segs = 60;
+      const pts = [];
+      for (let j = 0; j <= segs; j++) {
+        const t = j / segs;
+        const angle = arc.startAngle + arc.dir * t * Math.PI * 1.6;
+        const x = arc.cx + Math.cos(angle) * arc.rx;
+        const y = Math.sin(angle) * arc.ry * 0.6;
+        const z = arc.cz + Math.sin(angle * 0.5) * 0.3;
+        pts.push(new THREE.Vector3(x, y, z));
+      }
+
+      const geom = new THREE.BufferGeometry().setFromPoints(pts);
+      const cols = new Float32Array((segs + 1) * 3);
+      for (let j = 0; j <= segs; j++) {
+        const t = j / segs;
+        const c = new THREE.Color().lerpColors(arc.c1, arc.c2, t);
+        cols[j * 3] = c.r;
+        cols[j * 3 + 1] = c.g;
+        cols[j * 3 + 2] = c.b;
+      }
+      geom.setAttribute('color', new THREE.BufferAttribute(cols, 3));
+      const origCols = new Float32Array(cols);
+
+      const mat = new THREE.LineBasicMaterial({
+        vertexColors: true, transparent: true, opacity: 0,
+      });
+      const line = new THREE.Line(geom, mat);
+      line.userData = {
+        delay: 2.6 + i * 0.12,
+        target: 0.3,
+        speed: 0.5 + Math.random() * 0.4,
+        phase: Math.random() * Math.PI * 2,
+        segs,
+      };
+      g.add(line);
+      strings.push({ line, geom, origCols, segs });
+    });
+
+    return { group: g, strings };
+  }
+
+  // ============================================================
+  //  10. RADIATION RINGS — concentric heat radiation circles
+  // ============================================================
+  function buildRadiationRings() {
+    const g = new THREE.Group();
+    const rings = [
+      { y: 1.4, r: 2.8,  c: C.warmMid,   op: 0.12 },
+      { y: 1.4, r: 3.6,  c: C.warm,      op: 0.08 },
+      { y: 1.4, r: 4.5,  c: C.warmGlow,  op: 0.05 },
+      { y: -1.5, r: 2.5, c: C.coolLight,  op: 0.10 },
+      { y: -1.5, r: 3.4, c: C.cool,       op: 0.07 },
+      { y: -1.5, r: 4.2, c: C.coolDeep,   op: 0.04 },
+    ];
+
+    rings.forEach((ring, i) => {
+      const segs = 80;
+      const pts = [];
+      for (let j = 0; j <= segs; j++) {
+        const angle = (j / segs) * Math.PI * 2;
+        pts.push(new THREE.Vector3(
+          Math.cos(angle) * ring.r,
+          ring.y,
+          Math.sin(angle) * ring.r
+        ));
+      }
+      const geom = new THREE.BufferGeometry().setFromPoints(pts);
+      const mat = new THREE.LineBasicMaterial({
+        color: ring.c, transparent: true, opacity: 0,
+      });
+      const line = new THREE.Line(geom, mat);
+      line.userData = { delay: 2.8 + i * 0.1, target: ring.op };
+      g.add(line);
+    });
+
+    return g;
+  }
+
+  // ============================================================
+  //  11. VERTICAL SCAN LINES — multiple sweeping thermal scans
+  // ============================================================
+  function buildVerticalScans() {
+    const g = new THREE.Group();
+    const scans = [];
+    const configs = [
+      { h: 5, x: -1.5, z: 1.61 },
+      { h: 4, x: 1.8,  z: 1.61 },
+      { h: 3.5, x: 0, z: -1.61 },
+    ];
+
+    configs.forEach((cfg, i) => {
+      const segs = 30;
+      const pts = [];
+      for (let j = 0; j <= segs; j++) {
+        pts.push(new THREE.Vector3(0, -cfg.h / 2 + (cfg.h * j / segs), 0));
+      }
+      const geom = new THREE.BufferGeometry().setFromPoints(pts);
+
+      const cols = new Float32Array((segs + 1) * 3);
+      for (let j = 0; j <= segs; j++) {
+        const t = j / segs;
+        const c = new THREE.Color().lerpColors(C.coolDeep, C.warmHot, t);
+        cols[j * 3] = c.r;
+        cols[j * 3 + 1] = c.g;
+        cols[j * 3 + 2] = c.b;
+      }
+      geom.setAttribute('color', new THREE.BufferAttribute(cols, 3));
+
+      const mat = new THREE.LineBasicMaterial({
+        vertexColors: true, transparent: true, opacity: 0,
+      });
+      const line = new THREE.Line(geom, mat);
+      line.userData = { delay: 1.8 + i * 0.15, target: 0.15 };
+      line.position.z = cfg.z;
+      g.add(line);
+      scans.push({ line, baseX: cfg.x, speed: 0.25 + i * 0.1 });
+    });
+
+    return { group: g, scans };
+  }
+
+  // ============================================================
+  //  12. ENVELOPE GLOW LINES — secondary wireframe halo
+  // ============================================================
+  function buildEnvelopeGlow() {
+    const g = new THREE.Group();
+    const w = 4.5, h = 2.8, d = 3.2;
+    const scale = 1.15; // slightly larger than shoebox
+    const hw = w / 2 * scale, hh = h / 2 * scale, hd = d / 2 * scale;
+
+    const verts = [
+      [-hw, -hh, -hd], [hw, -hh, -hd], [hw, hh, -hd], [-hw, hh, -hd],
+      [-hw, -hh, hd],  [hw, -hh, hd],  [hw, hh, hd],  [-hw, hh, hd],
+    ];
+
+    const edges = [
+      [0,1],[1,2],[2,3],[3,0],
+      [4,5],[5,6],[6,7],[7,4],
+      [0,4],[1,5],[2,6],[3,7],
+    ];
+
+    edges.forEach((e, i) => {
+      const a = new THREE.Vector3(...verts[e[0]]);
+      const b = new THREE.Vector3(...verts[e[1]]);
+      const segs = 20;
+      const pts = [];
+      for (let j = 0; j <= segs; j++) {
+        pts.push(new THREE.Vector3().lerpVectors(a, b, j / segs));
+      }
+      const geom = new THREE.BufferGeometry().setFromPoints(pts);
+      const mat = new THREE.LineBasicMaterial({
+        color: C.cool, transparent: true, opacity: 0,
+      });
+      const line = new THREE.Line(geom, mat);
+      line.userData = { delay: 3.0 + i * 0.04, target: 0.06 };
+      g.add(line);
+    });
+
+    return g;
+  }
+
+  // ============================================================
   //  BUILD SCENE
   // ============================================================
   const grid       = buildGroundGrid();
@@ -485,15 +702,23 @@
   const { points: particles, vel: particleVel }    = buildParticles();
   const connections = buildConnections();
   const scanLine   = buildScanLine();
+  const { group: convectionGroup, strings: convectionStrings } = buildConvectionArcs();
+  const radiationRings = buildRadiationRings();
+  const { group: vertScansGroup, scans: vertScans } = buildVerticalScans();
+  const envelopeGlow = buildEnvelopeGlow();
 
   world.add(grid);
   world.add(connections);
+  world.add(envelopeGlow);
   world.add(shoebox);
   world.add(interior);
+  world.add(convectionGroup);
   world.add(heatGroup);
   world.add(coldGroup);
+  world.add(radiationRings);
   world.add(particles);
   world.add(scanLine);
+  world.add(vertScansGroup);
 
   // ============================================================
   //  ANIMATION
@@ -571,13 +796,24 @@
     if (elapsed > 1.5) {
       pulseStrings(heatStrings, elapsed);
       pulseStrings(coldStrings, elapsed);
+      pulseStrings(convectionStrings, elapsed);
     }
     moveParticles(elapsed);
     moveScan(elapsed);
 
+    // Vertical scan lines sweep horizontally
+    vertScans.forEach(({ line, baseX, speed }) => {
+      line.position.x = baseX + Math.sin(elapsed * speed) * 2.5;
+    });
+
     // Gentle rotation + mouse parallax
     world.rotation.y = Math.sin(elapsed * 0.08) * 0.35 + mouse.x * 0.12;
     world.rotation.x = Math.sin(elapsed * 0.06) * 0.06 + mouse.y * 0.06 - 0.08;
+
+    // Smooth offset toward right on wide screens
+    const targetOff = getSceneOffset();
+    sceneOffsetX += (targetOff - sceneOffsetX) * 0.03;
+    world.position.x = sceneOffsetX;
 
     // Subtle breathing
     const br = 1 + Math.sin(elapsed * 0.4) * 0.008;
@@ -614,6 +850,7 @@
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
     renderer.setSize(w, h);
+    sceneOffsetX = getSceneOffset();
   });
 })();
 
