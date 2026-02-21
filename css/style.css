@@ -263,11 +263,13 @@ img {
   line-height: 1.08;
   letter-spacing: -0.04em;
   margin-bottom: 24px;
+  max-width: max-content;
   animation: fadeInUp 0.8s var(--ease-out-expo) 0.35s both;
 }
 
 .hero-title-line {
   display: block;
+  white-space: nowrap;
 }
 
 .hero-title-gradient {
