@@ -232,7 +232,9 @@ img {
   bottom: 0;
   z-index: 2;
   background:
-    radial-gradient(ellipse at center, transparent 0%, var(--color-bg) 80%),
+    radial-gradient(circle at 78% 28%, rgba(255, 66, 143, 0.2) 0%, rgba(255, 66, 143, 0) 42%),
+    radial-gradient(circle at 20% 70%, rgba(54, 199, 255, 0.18) 0%, rgba(54, 199, 255, 0) 40%),
+    radial-gradient(ellipse at center, transparent 0%, var(--color-bg) 88%),
     linear-gradient(180deg, transparent 65%, var(--color-bg) 100%);
   pointer-events: none;
 }
