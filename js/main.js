@@ -47,16 +47,16 @@
   // ── Color palette: reds→blues for heat→cold ────────
   const C = {
     // Warm (heat gain / solar)
-    warmHot:   new THREE.Color(0xff3333),  // intense red
-    warm:      new THREE.Color(0xff6b4a),  // red-orange
-    warmMid:   new THREE.Color(0xf59e0b),  // amber
-    warmGlow:  new THREE.Color(0xff8a65),  // soft warm
+    warmHot:   new THREE.Color(0xff2a6d),  // neon pink-red
+    warm:      new THREE.Color(0xff6b2c),  // electric orange
+    warmMid:   new THREE.Color(0xffc01d),  // vivid amber
+    warmGlow:  new THREE.Color(0xff8a3d),  // warm glow
 
     // Cool (heat loss / cold)
-    coolDeep:  new THREE.Color(0x1d4ed8),  // deep blue
-    cool:      new THREE.Color(0x3b82f6),  // blue
-    coolLight: new THREE.Color(0x60a5fa),  // light blue
-    coolIce:   new THREE.Color(0x93c5fd),  // ice blue
+    coolDeep:  new THREE.Color(0x2750ff),  // neon deep blue
+    cool:      new THREE.Color(0x26a8ff),  // electric cyan-blue
+    coolLight: new THREE.Color(0x4dd6ff),  // bright aqua
+    coolIce:   new THREE.Color(0x8de9ff),  // icy neon
 
     // Neutral / structure
     structure: new THREE.Color(0x94a3b8),  // slate
@@ -156,7 +156,11 @@
       geom.setAttribute('color', new THREE.BufferAttribute(cols, 3));
 
       const mat = new THREE.LineBasicMaterial({
-        vertexColors: true, transparent: true, opacity: 0,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
       });
       const line = new THREE.Line(geom, mat);
       line.userData = { delay: 0.4 + i * 0.07, target: 1.0 };
@@ -281,12 +285,16 @@
       const origCols = new Float32Array(cols);
 
       const mat = new THREE.LineBasicMaterial({
-        vertexColors: true, transparent: true, opacity: 0,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
       });
       const line = new THREE.Line(geom, mat);
       line.userData = {
         delay: 1.6 + i * 0.1,
-        target: 0.65,
+        target: 0.9,
         speed: 0.8 + Math.random() * 0.6,
         phase: Math.random() * Math.PI * 2,
         segs,
@@ -362,12 +370,16 @@
       const origCols = new Float32Array(cols);
 
       const mat = new THREE.LineBasicMaterial({
-        vertexColors: true, transparent: true, opacity: 0,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
       });
       const line = new THREE.Line(geom, mat);
       line.userData = {
         delay: 2.0 + i * 0.1,
-        target: 0.55,
+        target: 0.82,
         speed: 0.6 + Math.random() * 0.5,
         phase: Math.random() * Math.PI * 2,
         segs,
@@ -424,10 +436,12 @@
       transparent: true,
       opacity: 0,
       sizeAttenuation: true,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
     });
 
     const pts = new THREE.Points(geom, mat);
-    pts.userData = { delay: 2.5, target: 0.55 };
+    pts.userData = { delay: 2.5, target: 0.75 };
     return { points: pts, vel };
   }
 
@@ -560,12 +574,16 @@
       const origCols = new Float32Array(cols);
 
       const mat = new THREE.LineBasicMaterial({
-        vertexColors: true, transparent: true, opacity: 0,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
       });
       const line = new THREE.Line(geom, mat);
       line.userData = {
         delay: 2.6 + i * 0.12,
-        target: 0.3,
+        target: 0.48,
         speed: 0.5 + Math.random() * 0.4,
         phase: Math.random() * Math.PI * 2,
         segs,
@@ -666,9 +684,10 @@
 
     // Multiple glow shells at increasing scales for a bloom effect
     const shells = [
-      { scale: 1.04, color: C.coolLight, target: 0.35, linewidth: 1 },
-      { scale: 1.10, color: C.cool,      target: 0.20, linewidth: 1 },
-      { scale: 1.18, color: C.coolDeep,  target: 0.10, linewidth: 1 },
+      { scale: 1.04, color: C.coolLight, target: 0.50, linewidth: 1 },
+      { scale: 1.10, color: C.cool,      target: 0.34, linewidth: 1 },
+      { scale: 1.18, color: C.coolDeep,  target: 0.22, linewidth: 1 },
+      { scale: 1.24, color: C.warmGlow,  target: 0.14, linewidth: 1 },
     ];
 
     const edges = [
@@ -694,7 +713,11 @@
         }
         const geom = new THREE.BufferGeometry().setFromPoints(pts);
         const mat = new THREE.LineBasicMaterial({
-          color: shell.color, transparent: true, opacity: 0,
+          color: shell.color,
+          transparent: true,
+          opacity: 0,
+          blending: THREE.AdditiveBlending,
+          depthWrite: false,
         });
         const line = new THREE.Line(geom, mat);
         line.userData = { delay: 1.0 + si * 0.3 + i * 0.04, target: shell.target };
@@ -766,10 +789,10 @@
         const t = i / segs;
         // Traveling wave
         const wave = Math.sin((t * 8 - time * speed * 2.5 + phase) * Math.PI) * 0.5 + 0.5;
-        const brightness = 0.35 + wave * 0.65;
-        colors.array[i * 3]     = origCols[i * 3] * brightness;
-        colors.array[i * 3 + 1] = origCols[i * 3 + 1] * brightness;
-        colors.array[i * 3 + 2] = origCols[i * 3 + 2] * brightness;
+        const brightness = 0.45 + wave * 0.95;
+        colors.array[i * 3]     = Math.min(1, origCols[i * 3] * brightness);
+        colors.array[i * 3 + 1] = Math.min(1, origCols[i * 3 + 1] * brightness);
+        colors.array[i * 3 + 2] = Math.min(1, origCols[i * 3 + 2] * brightness);
       }
       colors.needsUpdate = true;
     });
