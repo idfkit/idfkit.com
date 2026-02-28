@@ -816,6 +816,18 @@
     scanLine.position.z = 1.61;
   }
 
+  // ── Telemetry DOM references ───────────────────────
+  var telemFrame = 0;
+  var telemContainer = document.getElementById('hero-telemetry');
+  var telemEls = [
+    document.getElementById('telem-solar-alt'),
+    document.getElementById('telem-azimuth'),
+    document.getElementById('telem-surf-temp'),
+    document.getElementById('telem-wind'),
+    document.getElementById('telem-heat-flux'),
+    document.getElementById('telem-delta-t')
+  ];
+
   // ── RENDER LOOP ────────────────────────────────────
   function loop(ts) {
     requestAnimationFrame(loop);
@@ -874,6 +886,31 @@
         }
       }
     });
+
+    // ── Telemetry HUD ──
+    if (elapsed > 2.0 && (++telemFrame & 3) === 0) {
+      const sunCycle = elapsed * 0.05;
+      const solarAlt = 41.5 + 26.5 * Math.sin(sunCycle);
+      const solarAz = 180 + 60 * Math.sin(sunCycle * 0.73);
+      const surfTemp = 22 + 4 * Math.sin(sunCycle - 0.8) + 0.3 * Math.sin(elapsed * 1.7);
+      const wind = 4.0 + 1.5 * Math.sin(elapsed * 0.31) + 0.8 * Math.sin(elapsed * 0.97) + 0.4 * Math.sin(elapsed * 2.3);
+      const heatFlux = solarAlt * 0.35 + 2 * Math.sin(elapsed * 0.6) - 5;
+      const extTemp = 18 + 6 * Math.sin(sunCycle - 0.3);
+      const deltaT = Math.abs(surfTemp - extTemp);
+
+      telemEls[0].textContent = solarAlt.toFixed(1) + '°';
+      telemEls[1].textContent = solarAz.toFixed(1) + '°';
+      telemEls[2].textContent = surfTemp.toFixed(1) + ' °C';
+      telemEls[3].textContent = wind.toFixed(1) + ' m/s';
+      telemEls[4].textContent = (heatFlux >= 0 ? '+' : '') + heatFlux.toFixed(1) + ' W/m²';
+      telemEls[5].textContent = deltaT.toFixed(1) + ' K';
+    }
+    if (telemContainer) {
+      if (elapsed > 2.4 && !telemContainer.classList.contains('visible')) {
+        telemContainer.classList.add('visible');
+      }
+      telemContainer.style.opacity = scrollFade * 0.55;
+    }
 
     renderer.render(scene, camera);
   }

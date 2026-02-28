@@ -97,6 +97,32 @@
         </div>
       </div>
     </div>
+    <div class="hero-telemetry" id="hero-telemetry">
+      <div class="telemetry-row">
+        <span class="telemetry-label">Solar Alt</span>
+        <span class="telemetry-value" id="telem-solar-alt">42.3°</span>
+      </div>
+      <div class="telemetry-row">
+        <span class="telemetry-label">Azimuth</span>
+        <span class="telemetry-value" id="telem-azimuth">187.2°</span>
+      </div>
+      <div class="telemetry-row">
+        <span class="telemetry-label">Surf Temp</span>
+        <span class="telemetry-value" id="telem-surf-temp">24.7 °C</span>
+      </div>
+      <div class="telemetry-row">
+        <span class="telemetry-label">Wind</span>
+        <span class="telemetry-value" id="telem-wind">3.2 m/s</span>
+      </div>
+      <div class="telemetry-row">
+        <span class="telemetry-label">Heat Flux</span>
+        <span class="telemetry-value" id="telem-heat-flux">+12.4 W/m²</span>
+      </div>
+      <div class="telemetry-row">
+        <span class="telemetry-label">Envelope ΔT</span>
+        <span class="telemetry-value" id="telem-delta-t">6.8 K</span>
+      </div>
+    </div>
     <div class="hero-scroll-indicator">
       <div class="hero-scroll-line"></div>
     </div>
@@ -107,13 +133,14 @@
     <div class="container">
       <div class="section-header">
         <span class="section-label">The Ecosystem</span>
-        <h2 class="section-title">Three layers.<br>One mission.</h2>
-        <p class="section-subtitle">From Python scripting to visual editing to AI-powered workflows &mdash; choose the layer that fits your needs.</p>
+        <h2 class="section-title">One ecosystem.<br>One mission.</h2>
+        <p class="section-subtitle">From Python scripting to visual editing to AI-powered workflows &mdash; choose the tools that fit your needs.</p>
       </div>
 
       <div class="ecosystem-grid">
         <!-- idfkit core -->
         <div class="eco-card" data-animate>
+          <div class="eco-card-badge">Python</div>
           <div class="eco-card-icon">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
           </div>
@@ -171,6 +198,7 @@
 
         <!-- idfkit-mcp -->
         <div class="eco-card" data-animate>
+          <div class="eco-card-badge">MCP Server</div>
           <div class="eco-card-icon">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
           </div>
@@ -189,6 +217,62 @@
             <code>uvx idfkit-mcp</code>
           </div>
           <a href="https://github.com/idfkit/idfkit-mcp" class="eco-card-link" target="_blank" rel="noopener">
+            View on GitHub
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+
+        <!-- idfkit-docs -->
+        <div class="eco-card" data-animate>
+          <div class="eco-card-badge">Reference</div>
+          <div class="eco-card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/><path d="M8 7h8M8 11h6"/></svg>
+          </div>
+          <div class="eco-card-label">Documentation</div>
+          <h3 class="eco-card-title">idfkit-docs</h3>
+          <p class="eco-card-desc">Interactive EnergyPlus Input/Output reference documentation. Browse object types, fields, and constraints &mdash; all searchable and hyperlinked.</p>
+          <ul class="eco-card-features">
+            <li>Searchable object type reference</li>
+            <li>Field-level docs with units &amp; constraints</li>
+            <li>Hyperlinked cross-references</li>
+            <li>Built with Zensical</li>
+          </ul>
+          <div class="eco-card-code">
+            <code>docs.idfkit.com</code>
+          </div>
+          <div class="eco-card-links">
+            <a href="https://docs.idfkit.com" class="eco-card-link" target="_blank" rel="noopener">
+              Browse Docs
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+            <a href="https://github.com/idfkit/idfkit-docs" class="eco-card-link eco-card-link-secondary" target="_blank" rel="noopener">
+              GitHub
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- idfkit-lsp -->
+        <div class="eco-card" data-animate>
+          <div class="eco-card-badge">VS Code</div>
+          <div class="eco-card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="14" y1="4" x2="10" y2="20"/></svg>
+          </div>
+          <div class="eco-card-label">Editor Extension</div>
+          <h3 class="eco-card-title">idfkit-lsp</h3>
+          <p class="eco-card-desc">Language Server and VS Code extension for intelligent idfkit editing. Autocomplete, hover docs, signature help, and AST-based type inference.</p>
+          <ul class="eco-card-features">
+            <li>Object type &amp; field autocomplete</li>
+            <li>Inline hover documentation</li>
+            <li>Signature help for doc.add() calls</li>
+            <li>AST-based type inference</li>
+            <li>VS Code extension included</li>
+            <li>Python 3.10+ / pygls</li>
+          </ul>
+          <div class="eco-card-code">
+            <code>pip install idfkit-lsp</code>
+          </div>
+          <a href="https://github.com/idfkit/idfkit-lsp" class="eco-card-link" target="_blank" rel="noopener">
             View on GitHub
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </a>
@@ -249,10 +333,34 @@
 
         <div class="feature-card" data-animate>
           <div class="feature-icon feature-icon-ai">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a4 4 0 014 4c0 1.95-1.4 3.58-3.25 3.93"/><path d="M8.75 9.93A4 4 0 1112 2"/><circle cx="12" cy="16" r="2"/><path d="M12 18v4"/><path d="M8 22h8"/></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 1.74.56 3.35 1.5 4.6C7.46 14.85 8 16.42 8 18v1a2 2 0 002 2h4a2 2 0 002-2v-1c0-1.58.54-3.15 1.5-4.4A7 7 0 0012 2z"/><path d="M10 22h4"/><path d="M9 14c0-1.5.5-2.5 1.5-3.5M15 14c0-1.5-.5-2.5-1.5-3.5"/><path d="M12 10.5V14"/></svg>
           </div>
           <h3 class="feature-title">AI-native</h3>
           <p class="feature-desc">MCP server with 25 tools lets AI agents author, validate, and run energy simulations autonomously.</p>
+        </div>
+
+        <div class="feature-card" data-animate>
+          <div class="feature-icon feature-icon-browser">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><circle cx="8" cy="21" r="0" fill="currentColor"/><circle cx="16" cy="21" r="0" fill="currentColor"/><path d="M12 17v4M8 21h8"/><circle cx="6" cy="7" r="1" fill="currentColor" stroke="none"/><circle cx="9.5" cy="7" r="1" fill="currentColor" stroke="none"/><path d="M2 9h20"/></svg>
+          </div>
+          <h3 class="feature-title">Browser-native simulation</h3>
+          <p class="feature-desc">Run EnergyPlus simulations directly in the browser via Envelop. No installation, no server — just open and simulate.</p>
+        </div>
+
+        <div class="feature-card" data-animate>
+          <div class="feature-icon feature-icon-lsp">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="14" y1="4" x2="10" y2="20"/></svg>
+          </div>
+          <h3 class="feature-title">Intelligent code editing</h3>
+          <p class="feature-desc">Autocomplete, hover docs, signature help, and AST-based type inference for IDF files in VS Code.</p>
+        </div>
+
+        <div class="feature-card" data-animate>
+          <div class="feature-icon feature-icon-docs">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+          </div>
+          <h3 class="feature-title">Interactive documentation</h3>
+          <p class="feature-desc">Searchable, hyperlinked EnergyPlus I/O reference with field constraints and cross-references — all in the browser.</p>
         </div>
       </div>
     </div>
@@ -359,7 +467,7 @@ results = model.simulate()
       <div class="section-header">
         <span class="section-label">Beta Program</span>
         <h2 class="section-title">Help shape the future<br>of energy modeling.</h2>
-        <p class="section-subtitle">All three tools are in active beta. We'd love for you to try them and let us know what's working and what isn't.</p>
+        <p class="section-subtitle">All tools are in active beta. We'd love for you to try them and let us know what's working and what isn't.</p>
       </div>
 
       <div class="beta-grid">
@@ -398,6 +506,30 @@ results = model.simulate()
             Report an Issue
           </a>
         </div>
+
+        <div class="beta-card" data-animate>
+          <div class="beta-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/><path d="M8 7h8M8 11h6"/></svg>
+          </div>
+          <h3 class="beta-card-title">idfkit-docs</h3>
+          <p class="beta-card-desc">Reference documentation</p>
+          <a href="https://github.com/idfkit/idfkit-docs/issues/new" class="btn btn-secondary btn-beta" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+            Report an Issue
+          </a>
+        </div>
+
+        <div class="beta-card" data-animate>
+          <div class="beta-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="14" y1="4" x2="10" y2="20"/></svg>
+          </div>
+          <h3 class="beta-card-title">idfkit-lsp</h3>
+          <p class="beta-card-desc">VS Code extension</p>
+          <a href="https://github.com/idfkit/idfkit-lsp/issues/new" class="btn btn-secondary btn-beta" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+            Report an Issue
+          </a>
+        </div>
       </div>
 
       <div class="beta-cta" data-animate>
@@ -427,6 +559,8 @@ results = model.simulate()
           <a href="https://github.com/idfkit/idfkit" target="_blank" rel="noopener">idfkit</a>
           <a href="https://github.com/idfkit/idfkit-app" target="_blank" rel="noopener">Envelop</a>
           <a href="https://github.com/idfkit/idfkit-mcp" target="_blank" rel="noopener">idfkit-mcp</a>
+          <a href="https://github.com/idfkit/idfkit-docs" target="_blank" rel="noopener">idfkit-docs</a>
+          <a href="https://github.com/idfkit/idfkit-lsp" target="_blank" rel="noopener">idfkit-lsp</a>
         </div>
         <div class="footer-copy">
           MIT License
