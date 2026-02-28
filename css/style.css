@@ -364,6 +364,57 @@ img {
   animation: scrollPulse 2s ease-in-out infinite;
 }
 
+/* --- Hero Telemetry HUD --- */
+.hero-telemetry {
+  position: absolute;
+  bottom: 48px;
+  right: 32px;
+  z-index: 3;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: transform 0.8s var(--ease-out-expo);
+  pointer-events: none;
+}
+
+.hero-telemetry.visible {
+  transform: translateY(0);
+}
+
+.hero-telemetry:hover {
+  pointer-events: auto;
+}
+
+.telemetry-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  white-space: nowrap;
+}
+
+.telemetry-label {
+  color: rgba(140, 160, 190, 0.7);
+  text-transform: uppercase;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+}
+
+.telemetry-value {
+  color: rgba(180, 210, 255, 0.9);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  min-width: 72px;
+}
+
+@media (max-width: 768px) {
+  .hero-telemetry {
+    display: none;
+  }
+}
+
 /* --- Section Base --- */
 .section, .hero {
   scroll-margin-top: 113px; /* beta bar (41px) + nav (72px) */
