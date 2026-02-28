@@ -411,12 +411,15 @@ img {
 }
 
 .ecosystem-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 24px;
+  justify-content: center;
 }
 
 .eco-card {
+  flex: 0 1 calc((100% - 48px) / 3);
+  min-width: 0;
   position: relative;
   background: var(--color-bg-card);
   border: 1px solid var(--color-border);
@@ -738,7 +741,7 @@ img {
 
 /* --- Beta Announcement Bar --- */
 .beta-bar {
-  background: linear-gradient(90deg, rgba(59, 130, 246, 0.12) 0%, rgba(139, 92, 246, 0.12) 100%);
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.12) 0%, rgba(139, 92, 246, 0.12) 100%), var(--color-bg);
   border-bottom: 1px solid rgba(59, 130, 246, 0.15);
   padding: 10px 24px;
   position: fixed;
@@ -793,13 +796,16 @@ img {
 }
 
 .beta-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
   margin-bottom: 48px;
+  justify-content: center;
 }
 
 .beta-card {
+  flex: 0 1 calc((100% - 40px) / 3);
+  min-width: 0;
   background: var(--color-bg-card);
   border: 1px solid var(--color-border);
   border-radius: 16px;
@@ -882,6 +888,8 @@ img {
 .beta-grid [data-animate]:nth-child(1) { transition-delay: 0.05s; }
 .beta-grid [data-animate]:nth-child(2) { transition-delay: 0.15s; }
 .beta-grid [data-animate]:nth-child(3) { transition-delay: 0.25s; }
+.beta-grid [data-animate]:nth-child(4) { transition-delay: 0.35s; }
+.beta-grid [data-animate]:nth-child(5) { transition-delay: 0.45s; }
 
 /* --- Footer --- */
 .footer {
@@ -969,6 +977,8 @@ img {
 .ecosystem-grid [data-animate]:nth-child(1) { transition-delay: 0.05s; }
 .ecosystem-grid [data-animate]:nth-child(2) { transition-delay: 0.15s; }
 .ecosystem-grid [data-animate]:nth-child(3) { transition-delay: 0.25s; }
+.ecosystem-grid [data-animate]:nth-child(4) { transition-delay: 0.35s; }
+.ecosystem-grid [data-animate]:nth-child(5) { transition-delay: 0.45s; }
 
 .features-grid [data-animate]:nth-child(1) { transition-delay: 0.0s; }
 .features-grid [data-animate]:nth-child(2) { transition-delay: 0.08s; }
@@ -980,9 +990,14 @@ img {
 /* --- Responsive --- */
 @media (max-width: 1024px) {
   .ecosystem-grid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: center;
     max-width: 500px;
     margin: 0 auto;
+  }
+
+  .eco-card {
+    flex: 0 1 100%;
   }
 
   .features-grid {
@@ -990,9 +1005,15 @@ img {
   }
 
   .beta-grid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: center;
     max-width: 400px;
     margin: 0 auto 48px;
+  }
+
+  .beta-card {
+    flex: 0 1 100%;
+    width: 100%;
   }
 }
 
