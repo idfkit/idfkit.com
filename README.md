@@ -18,6 +18,12 @@ css/style.css — styles
 js/main.js    — 3D animation & UI interactions
 ```
 
+## Analytics
+
+The site uses privacy-first, cookieless, free
+[GoatCounter](https://www.goatcounter.com) analytics. See
+[docs/analytics.md](docs/analytics.md) for details.
+
 ## License
 
 MIT
