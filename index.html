@@ -83,8 +83,16 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 
   <!-- Analytics (GoatCounter — privacy-first, cookieless, free). See docs/analytics.md -->
-  <script data-goatcounter="https://idfkit.goatcounter.com/count"
-          async src="//gc.zgo.at/count.js"></script>
+  <script>
+    // Only count hits on the production host so local/staging visits don't pollute stats.
+    if (location.hostname === 'idfkit.com') {
+      var gc = document.createElement('script');
+      gc.async = true;
+      gc.src = '//gc.zgo.at/count.js';
+      gc.setAttribute('data-goatcounter', 'https://idfkit.goatcounter.com/count');
+      document.head.appendChild(gc);
+    }
+  </script>
 </head>
 <body>
   <!-- Beta Announcement Bar -->

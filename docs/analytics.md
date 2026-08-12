@@ -27,53 +27,27 @@ No personal data about individual visitors is collected.
 
 ## How it's integrated
 
-A single script tag lives in the `<head>` of `index.html`:
-
-```html
-<script data-goatcounter="https://idfkit.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
-```
-
-The `data-goatcounter` attribute points at the site's GoatCounter endpoint
-(`idfkit.goatcounter.com`). There is no build step and no environment variable
-to manage; the same static `index.html` is served everywhere (GitHub Pages).
+The tracking script lives in the `<head>` of `index.html`. It points at the
+site's GoatCounter endpoint (`idfkit.goatcounter.com`). There is no build step
+and no environment variable to manage; the same static `index.html` is served
+everywhere (GitHub Pages).
 
 ### Keeping local/staging hits out of production stats
 
-Unlike Plausible, GoatCounter counts every hit that reaches the endpoint,
-including from `localhost`. If local development ends up polluting the stats,
-gate the script on hostname, e.g.:
+GoatCounter counts every hit that reaches the endpoint, so the script is loaded
+only when the page is served from the production host. Visits from `localhost`,
+a staging preview, or anywhere other than `idfkit.com` never load the tracker
+and are therefore never counted:
 
 ```html
 <script>
+  // Only count hits on the production host so local/staging visits don't pollute stats.
   if (location.hostname === 'idfkit.com') {
-    var s = document.createElement('script');
-    s.async = true;
-    s.src = '//gc.zgo.at/count.js';
-    s.setAttribute('data-goatcounter', 'https://idfkit.goatcounter.com/count');
-    document.head.appendChild(s);
+    var gc = document.createElement('script');
+    gc.async = true;
+    gc.src = '//gc.zgo.at/count.js';
+    gc.setAttribute('data-goatcounter', 'https://idfkit.goatcounter.com/count');
+    document.head.appendChild(gc);
   }
 </script>
 ```
-
-In practice the plain tag is fine for a simple landing page — GoatCounter also
-ignores hits from `localhost` by default.
-
-## Setup / access
-
-1. Create a free account at <https://www.goatcounter.com> and register the site
-   code `idfkit` (this yields the dashboard at
-   <https://idfkit.goatcounter.com>). If a different code is chosen, update the
-   `data-goatcounter` URL in `index.html` to match.
-2. The tracking snippet above is already present in `index.html`.
-3. To verify tracking after a deploy:
-   - Open <https://idfkit.com/> in a browser.
-   - Confirm a request to `https://idfkit.goatcounter.com/count` fires
-     (Network tab).
-   - The visit should appear in the GoatCounter dashboard within a few seconds.
-
-## Notes
-
-- The dashboard can be made public in GoatCounter's site settings
-  (Settings → "Data sharing / public").
-- To disable analytics, remove the script tag from `index.html`.
