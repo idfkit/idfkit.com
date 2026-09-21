@@ -987,6 +987,42 @@
   });
 })();
 
+// ── Engine demo: load the live simulation on request ─────────────────
+// The demo downloads ~10 MB of compiled engine on a cold visit, so it is
+// never fetched for a visitor who only scrolled past it.
+(function () {
+  const stage = document.getElementById('engine-stage');
+  const btn = document.getElementById('engine-run-btn');
+  if (!stage || !btn) return;
+
+  let loaded = false;
+
+  btn.addEventListener('click', () => {
+    if (loaded) return;
+    loaded = true;
+
+    btn.disabled = true;
+    btn.textContent = 'Loading the engine…';
+
+    // The stage hugs the poster until now; give it the demo's proportions.
+    stage.classList.add('is-live');
+
+    const frame = document.createElement('iframe');
+    frame.src = stage.dataset.embed;
+    frame.title = stage.dataset.title || 'In-browser building energy simulation';
+    frame.loading = 'eager';
+    frame.allow = 'clipboard-write';
+    frame.referrerPolicy = 'no-referrer-when-downgrade';
+
+    frame.addEventListener('load', () => {
+      const poster = stage.querySelector('.engine-poster');
+      if (poster) poster.remove();
+    });
+
+    stage.appendChild(frame);
+  });
+})();
+
 // ── Smooth anchor scrolling ──────────────────────────
 (function () {
   document.querySelectorAll('a[href^="#"]').forEach((a) => {

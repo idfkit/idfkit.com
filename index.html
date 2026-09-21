@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>idfkit — Modern Building Energy Simulation Toolkit</title>
-  <meta name="description" content="A fast, modern Python toolkit for EnergyPlus building energy simulation. O(1) lookups, automatic reference tracking, 3D visualization, and AI integration.">
+  <title>idfkit — Building Energy Modeling in Python and TypeScript</title>
+  <meta name="description" content="Open-source tooling for EnergyPlus building energy simulation: one object model in Python and TypeScript, an MCP server for AI agents, a visual web editor, and an in-browser simulation engine.">
   <meta name="theme-color" content="#0a0e1a">
 
-  <meta name="keywords" content="EnergyPlus, IDF, epJSON, building energy simulation, Python, idfkit, energy modeling, HVAC, building performance">
+  <meta name="keywords" content="EnergyPlus, IDF, epJSON, building energy simulation, Python, TypeScript, JavaScript, WebAssembly, WASM, idfkit, energy modeling, HVAC, building performance, browser simulation">
   <link rel="canonical" href="https://idfkit.com/">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="idfkit — Modern Building Energy Simulation Toolkit">
-  <meta property="og:description" content="Fast, modern tools for EnergyPlus building energy simulation. From Python library to web editor to AI integration.">
+  <meta property="og:title" content="idfkit — Building energy modeling in Python and TypeScript">
+  <meta property="og:description" content="One EnergyPlus object model in Python and TypeScript, with an MCP server for AI agents, a visual web editor, and an in-browser simulation engine.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://idfkit.com/">
   <meta property="og:image" content="https://idfkit.com/og-image.png">
@@ -23,8 +23,8 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="idfkit — Modern Building Energy Simulation Toolkit">
-  <meta name="twitter:description" content="Fast, modern tools for EnergyPlus building energy simulation. From Python library to web editor to AI integration.">
+  <meta name="twitter:title" content="idfkit — Building energy modeling in Python and TypeScript">
+  <meta name="twitter:description" content="One EnergyPlus object model in Python and TypeScript, with an MCP server for AI agents, a visual web editor, and an in-browser simulation engine.">
   <meta name="twitter:image" content="https://idfkit.com/og-image.png">
 
   <!-- JSON-LD Structured Data -->
@@ -36,7 +36,7 @@
         "@type": "WebSite",
         "name": "idfkit",
         "url": "https://idfkit.com/",
-        "description": "A fast, modern Python toolkit for EnergyPlus building energy simulation. O(1) lookups, automatic reference tracking, 3D visualization, and AI integration."
+        "description": "Open-source tooling for EnergyPlus building energy simulation: one object model in Python and TypeScript, an MCP server for AI agents, a visual web editor, and an in-browser simulation engine."
       },
       {
         "@type": "SoftwareSourceCode",
@@ -52,6 +52,40 @@
           "@type": "Person",
           "name": "Samuel Letellier-Duchesne",
           "url": "https://samuelduchesne.github.io"
+        }
+      },
+      {
+        "@type": "SoftwareSourceCode",
+        "name": "@idfkit/core",
+        "description": "EnergyPlus IDF and epJSON tooling for JavaScript and TypeScript. Parsing, a typed object model, live reference tracking and writers, with content-addressed schemas for every supported version.",
+        "url": "https://js.idfkit.com/",
+        "codeRepository": "https://github.com/idfkit/idfkit-js",
+        "programmingLanguage": "TypeScript",
+        "license": "https://opensource.org/licenses/MIT",
+        "runtimePlatform": "Node.js, browsers, edge runtimes",
+        "applicationCategory": "Building Energy Simulation"
+      },
+      {
+        "@type": "SoftwareSourceCode",
+        "name": "@idfkit/engine",
+        "description": "Runs EnergyPlus version 26.1.0 software in the browser via WebAssembly. Loader, worker and output parsers, verified to reproduce a native build to within 3.5e-9 across 3.79 million data points.",
+        "url": "https://www.npmjs.com/package/@idfkit/engine",
+        "programmingLanguage": "TypeScript",
+        "license": "https://opensource.org/licenses/MIT",
+        "runtimePlatform": "WebAssembly",
+        "applicationCategory": "Building Energy Simulation"
+      },
+      {
+        "@type": "WebApplication",
+        "name": "Shoebox",
+        "url": "https://shoebox.idfkit.com/",
+        "description": "A one-zone building energy model that re-solves in the browser as you drag a slider, authored with @idfkit/core and simulated by @idfkit/engine. No server and no upload.",
+        "applicationCategory": "EngineeringApplication",
+        "operatingSystem": "Any (Web Browser)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
         }
       },
       {
@@ -131,12 +165,12 @@
         Open Source &middot; MIT License
       </div>
       <h1 class="hero-title">
-        <span class="hero-title-line">Modern tools</span>
-        <span class="hero-title-line hero-title-gradient">for building</span>
-        <span class="hero-title-line hero-title-gradient">energy simulation</span>
+        <span class="hero-title-line">Building energy modeling</span>
+        <span class="hero-title-line hero-title-gradient">in Python</span>
+        <span class="hero-title-line hero-title-gradient">and TypeScript</span>
       </h1>
       <p class="hero-subtitle">
-        A suite of open-source tools for EnergyPlus &mdash; from a Python library to a visual web editor to AI integration. Everything you need to model, simulate, and optimize building energy performance.
+        Open-source tooling for EnergyPlus, built on one object model in two languages. Around it: an MCP server your AI agent can drive, a visual web editor, and an engine build that runs simulations in the browser.
       </p>
       <div class="hero-actions">
         <a href="#get-started" class="btn btn-primary">
@@ -148,6 +182,11 @@
         </a>
       </div>
       <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-value">8.9&ndash;26.1</span>
+          <span class="hero-stat-label">EnergyPlus versions</span>
+        </div>
+        <div class="hero-stat-divider"></div>
         <div class="hero-stat">
           <span class="hero-stat-value">4000x</span>
           <span class="hero-stat-label">Faster lookups</span>
@@ -195,13 +234,21 @@
     </div>
   </section>
 
+
   <!-- Ecosystem Section -->
   <section class="section section-ecosystem" id="ecosystem">
     <div class="container">
       <div class="section-header">
         <span class="section-label">The Ecosystem</span>
-        <h2 class="section-title">One ecosystem.<br>One mission.</h2>
-        <p class="section-subtitle">From Python scripting to visual editing to AI-powered workflows &mdash; choose the tools that fit your needs.</p>
+        <h2 class="section-title">Two languages.<br>One object model.</h2>
+        <p class="section-subtitle">The same ideas &mdash; O(1) lookups, a live reference graph, IDF and epJSON treated as one format &mdash; expressed once for Python and once for TypeScript. Pick the runtime, not the compromise.</p>
+      </div>
+
+      <div class="eco-family-header">
+        <span class="eco-family-rule"></span>
+        <h3 class="eco-family-title">Python</h3>
+        <span class="eco-family-meta">Scripting, batch runs, AI agents, editor tooling</span>
+        <span class="eco-family-rule"></span>
       </div>
 
       <div class="ecosystem-grid">
@@ -339,6 +386,204 @@
           </a>
         </div>
       </div>
+
+      <div class="eco-family-header eco-family-header-js">
+        <span class="eco-family-rule"></span>
+        <h3 class="eco-family-title">JavaScript &amp; TypeScript</h3>
+        <span class="eco-family-meta">Node, browsers, workers and edge runtimes</span>
+        <span class="eco-family-rule"></span>
+      </div>
+
+      <div class="ecosystem-grid">
+        <!-- @idfkit/core -->
+        <div class="eco-card eco-card-js" data-animate>
+          <div class="eco-card-badge eco-card-badge-js">npm</div>
+          <div class="eco-card-icon eco-card-icon-js">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="eco-card-label">TypeScript SDK</div>
+          <h3 class="eco-card-title">@idfkit/core</h3>
+          <p class="eco-card-desc">A sibling to the Python library rather than a transliteration of it. A synchronous core with async edges, so the same code runs in Node, a browser, a worker, or at the edge.</p>
+          <ul class="eco-card-features">
+            <li>858 generated interfaces per version</li>
+            <li>Real accessors, not a Proxy</li>
+            <li>Renames rewrite every reference</li>
+            <li>epJSON field names, verbatim</li>
+            <li>760 example files round-trip byte-clean</li>
+            <li>~36k objects/sec parse, write, re-parse</li>
+          </ul>
+          <div class="eco-card-code">
+            <code>npm i @idfkit/core @idfkit/schemas</code>
+          </div>
+          <div class="eco-card-links">
+            <a href="https://js.idfkit.com/" class="eco-card-link" target="_blank" rel="noopener">
+              Read the docs
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+            <a href="https://github.com/idfkit/idfkit-js" class="eco-card-link eco-card-link-secondary" target="_blank" rel="noopener">
+              GitHub
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- @idfkit/engine -->
+        <div class="eco-card eco-card-js" data-animate>
+          <div class="eco-card-badge eco-card-badge-js">npm</div>
+          <div class="eco-card-icon eco-card-icon-js">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 9h20"/><path d="M7 14l2.5 2.5L7 19"/><path d="M12.5 19h4.5"/></svg>
+          </div>
+          <div class="eco-card-label">The Simulation Engine</div>
+          <h3 class="eco-card-title">@idfkit/engine</h3>
+          <p class="eco-card-desc">Loader, worker and output parsers for EnergyPlus version 26.1.0 software compiled to WebAssembly. Verified to reproduce a native build, not to approximate one.</p>
+          <ul class="eco-card-features">
+            <li>Agrees with native to 3.5e&minus;9</li>
+            <li>Runs off the main thread, in a worker</li>
+            <li>ESO, MTR, RDD, ERR and SQL parsers</li>
+            <li>HVACTemplate expansion built in</li>
+            <li>Single-threaded &mdash; no COOP/COEP</li>
+            <li>Engine version = package version</li>
+          </ul>
+          <div class="eco-card-code">
+            <code>npm i @idfkit/engine @idfkit/engine-assets</code>
+          </div>
+          <div class="eco-card-links">
+            <a href="#browser" class="eco-card-link">
+              See it run
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+            </a>
+            <a href="https://www.npmjs.com/package/@idfkit/engine" class="eco-card-link eco-card-link-secondary" target="_blank" rel="noopener">
+              npm
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- @idfkit/weather -->
+        <div class="eco-card eco-card-js" data-animate>
+          <div class="eco-card-badge eco-card-badge-js">npm</div>
+          <div class="eco-card-icon eco-card-icon-js">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          </div>
+          <div class="eco-card-label">Climate Data</div>
+          <h3 class="eco-card-title">@idfkit/weather</h3>
+          <p class="eco-card-desc">Search the TMYx station index and pull weather files browser-side. The archive is unzipped in the page and handed straight to the engine, with no server in the path.</p>
+          <ul class="eco-card-features">
+            <li>17,292 sites, 69,638 records</li>
+            <li>Index is 1.7&nbsp;MB gzipped, fetched lazily</li>
+            <li>EPW and DDY from one request</li>
+            <li>ASHRAE climate zone per station</li>
+            <li>Degree days separate each 15-year window</li>
+            <li>rewriteUrl hook for your own proxy</li>
+          </ul>
+          <div class="eco-card-code">
+            <code>npm i @idfkit/weather</code>
+          </div>
+          <div class="eco-card-links">
+            <a href="https://js.idfkit.com/how-to/fetch-weather-files/" class="eco-card-link" target="_blank" rel="noopener">
+              How-to guide
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+            <a href="https://www.npmjs.com/package/@idfkit/weather" class="eco-card-link eco-card-link-secondary" target="_blank" rel="noopener">
+              npm
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Engine (in-browser simulation) Section -->
+  <section class="section section-engine" id="browser">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">In the Browser</span>
+        <h2 class="section-title">Or run the simulation<br>on the page.</h2>
+        <p class="section-subtitle"><code>@idfkit/engine</code> packages EnergyPlus version 26.1.0 software compiled to WebAssembly. A model built with <code>@idfkit/core</code> can be solved in the browser, without a server.</p>
+      </div>
+
+      <div class="engine-demo" data-animate>
+        <div class="engine-stage" id="engine-stage" data-embed="https://shoebox.idfkit.com/" data-title="Shoebox — a live in-browser building energy simulation">
+          <div class="engine-poster">
+            <svg class="engine-poster-defs" width="0" height="0" aria-hidden="true" focusable="false">
+              <defs>
+                <linearGradient id="engFaceTop" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="rgba(59,130,246,0.20)"/>
+                  <stop offset="100%" stop-color="rgba(59,130,246,0.04)"/>
+                </linearGradient>
+                <linearGradient id="engFaceSide" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="rgba(59,130,246,0.10)"/>
+                  <stop offset="100%" stop-color="rgba(59,130,246,0.02)"/>
+                </linearGradient>
+
+                <!-- The zone, drawn axonometrically from the south-east so the
+                     south glazing is the face you are looking at. -->
+                <g id="engAxo">
+                  <polygon points="230,42 350,95 230,148 110,95" fill="url(#engFaceTop)"/>
+                  <polygon points="350,95 350,175 230,228 230,148" fill="url(#engFaceSide)"/>
+                  <polygon points="110,95 110,175 230,228 230,148" fill="url(#engFaceTop)"/>
+                  <g class="engine-axo-edges">
+                    <polyline points="230,42 350,95 230,148 110,95 230,42"/>
+                    <polyline points="110,95 110,175 230,228 350,175 350,95"/>
+                    <line x1="230" y1="148" x2="230" y2="228"/>
+                  </g>
+                  <!-- south glazing: sqrt(wwr) on each dimension, about the wall centre -->
+                  <polygon class="engine-axo-glass" points="143.2,131.8 196.8,155.5 196.8,191.2 143.2,167.5"/>
+                  <text class="engine-poster-tag" x="110" y="264">ZONE ONE &middot; 15.24 &times; 15.24 &times; 4.572 m</text>
+                  <text class="engine-poster-tag" x="110" y="282">SOUTH WWR 0.20 &middot; FREE-RUNNING</text>
+                </g>
+
+                <!-- The plate: zone mean air against outdoor drybulb, 48 h. -->
+                <g id="engPlate">
+                  <g class="engine-plate">
+                    <line x1="0" y1="60" x2="0" y2="250"/>
+                    <line x1="0" y1="250" x2="670" y2="250"/>
+                    <line class="engine-plate-datum" x1="0" y1="108.7" x2="670" y2="108.7"/>
+                  </g>
+                  <polyline class="engine-trace engine-trace-out" points="0.0,161.9 7.1,167.5 14.1,172.8 21.2,177.7 28.2,182.1 35.3,186.0 42.3,189.3 49.4,191.8 56.4,193.7 63.5,194.8 70.5,195.1 77.6,194.6 84.6,193.4 91.7,191.4 98.7,188.6 105.8,185.2 112.8,181.2 119.9,176.7 126.9,171.7 134.0,166.3 141.1,160.7 148.1,154.8 155.2,148.9 162.2,143.0 169.3,137.2 176.3,131.7 183.4,126.5 190.4,121.7 197.5,117.4 204.5,113.6 211.6,110.5 218.6,108.1 225.7,106.5 232.7,105.6 239.8,105.5 246.8,106.1 253.9,107.6 260.9,109.8 268.0,112.7 275.1,116.2 282.1,120.3 289.2,125.0 296.2,130.1 303.3,135.6 310.3,141.3 317.4,147.2 324.4,153.1 331.5,159.0 338.5,164.7 345.6,170.2 352.6,175.3 359.7,180.0 366.7,184.1 373.8,187.7 380.8,190.6 387.9,192.8 394.9,194.3 402.0,195.0 409.1,194.9 416.1,194.1 423.2,192.4 430.2,190.1 437.3,187.0 444.3,183.3 451.4,179.0 458.4,174.2 465.5,169.0 472.5,163.5 479.6,157.8 486.6,151.9 493.7,145.9 500.7,140.1 507.8,134.4 514.8,129.0 521.9,124.0 528.9,119.4 536.0,115.4 543.1,112.0 550.1,109.2 557.2,107.2 564.2,105.9 571.3,105.4 578.3,105.7 585.4,106.8 592.4,108.6 599.5,111.1 606.5,114.3 613.6,118.2 620.6,122.6 627.7,127.5 634.7,132.8 641.8,138.4 648.8,144.2 655.9,150.1 662.9,156.0 670.0,161.9"/>
+                  <polyline class="engine-trace engine-trace-zone" points="0.0,100.0 7.1,101.6 14.1,103.3 21.2,105.1 28.2,106.9 35.3,108.8 42.3,110.7 49.4,112.5 56.4,114.3 63.5,116.0 70.5,117.5 77.6,118.9 84.6,120.1 91.7,121.2 98.7,122.0 105.8,122.5 112.8,122.9 119.9,122.9 126.9,122.8 134.0,122.4 141.1,121.7 148.1,120.8 155.2,119.7 162.2,118.4 169.3,117.0 176.3,115.4 183.4,113.7 190.4,111.9 197.5,110.0 204.5,108.1 211.6,106.2 218.6,104.4 225.7,102.7 232.7,101.0 239.8,99.5 246.8,98.1 253.9,97.0 260.9,96.0 268.0,95.3 275.1,94.7 282.1,94.5 289.2,94.5 296.2,94.7 303.3,95.2 310.3,95.9 317.4,96.8 324.4,98.0 331.5,99.3 338.5,100.8 345.6,102.4 352.6,104.2 359.7,106.0 366.7,107.8 373.8,109.7 380.8,111.6 387.9,113.4 394.9,115.1 402.0,116.8 409.1,118.2 416.1,119.5 423.2,120.7 430.2,121.6 437.3,122.3 444.3,122.7 451.4,122.9 458.4,122.9 465.5,122.6 472.5,122.1 479.6,121.3 486.6,120.3 493.7,119.1 500.7,117.7 507.8,116.2 514.8,114.5 521.9,112.8 528.9,110.9 536.0,109.1 543.1,107.2 550.1,105.3 557.2,103.5 564.2,101.8 571.3,100.2 578.3,98.8 585.4,97.5 592.4,96.5 599.5,95.6 606.5,95.0 613.6,94.6 620.6,94.4 627.7,94.5 634.7,94.9 641.8,95.5 648.8,96.3 655.9,97.4 662.9,98.6 670.0,100.0"/>
+                  <text class="engine-poster-tag engine-poster-tag-zone" x="8" y="78">ZONE MEAN AIR &middot; 31.8 &deg;C &middot; SWING 4.8 K</text>
+                  <text class="engine-poster-tag" x="8" y="234">OUTDOOR DRYBULB &middot; 15.1 K SWING</text>
+                  <text class="engine-poster-tag" x="0" y="272">DENVER &middot; SUMMER DESIGN DAY &middot; 48 h</text>
+                  <text class="engine-poster-tag engine-poster-tag-right" x="670" y="272">DAMPING 0.32</text>
+                </g>
+              </defs>
+            </svg>
+
+            <svg class="engine-poster-art engine-poster-art-wide" viewBox="0 0 1200 320" role="img" aria-label="Drafting sheet: an axonometric of a one-zone box with south glazing, beside a 48-hour plot of zone mean air temperature against outdoor drybulb">
+              <use href="#engAxo"/>
+              <use href="#engPlate" transform="translate(470,0)"/>
+            </svg>
+
+            <svg class="engine-poster-art engine-poster-art-tall" viewBox="0 0 700 620" role="img" aria-label="Drafting sheet: an axonometric of a one-zone box with south glazing, above a 48-hour plot of zone mean air temperature against outdoor drybulb">
+              <use href="#engAxo" transform="translate(120,-30)"/>
+              <use href="#engPlate" transform="translate(15,300)"/>
+            </svg>
+
+            <div class="engine-poster-cta">
+              <button class="engine-run-btn" id="engine-run-btn" type="button">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                Run a simulation, here
+              </button>
+              <p class="engine-poster-note">Loads the live demo from <strong>shoebox.idfkit.com</strong>. About 10&nbsp;MB of engine on first visit, cached afterwards &mdash; then every solve is local.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="engine-caption">
+          <p>A one-zone model authored with <code>@idfkit/core</code> and solved by <code>@idfkit/engine</code>. Drag a slider and it re-solves a design day in about 50&nbsp;ms &mdash; fast enough that there is no Run button. Pick a weather site and it fetches the EPW and DDY in the browser and runs all 8,760 hours in about 0.7&nbsp;s.</p>
+          <a href="https://shoebox.idfkit.com" class="engine-caption-link" target="_blank" rel="noopener">
+            Open the demo in its own tab
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <p class="engine-facts" data-animate>
+        Worst divergence from a native build: 3.5e&minus;9 over 3.79&nbsp;million data points.
+        No COOP/COEP headers required. HVACTemplate objects expand unchanged.
+      </p>
     </div>
   </section>
 
@@ -348,7 +593,7 @@
       <div class="section-header">
         <span class="section-label">The Web App</span>
         <h2 class="section-title">Envelop.<br>Energy modeling, in your browser.</h2>
-        <p class="section-subtitle">A full EnergyPlus editor &mdash; visual HVAC design, 3D geometry, in-browser simulation. No install, no server.</p>
+        <p class="section-subtitle">A full editor built on the same stack as everything above &mdash; visual HVAC design, 3D geometry, and in-browser simulation. No install, no server.</p>
       </div>
 
       <div class="envelop-showcase" data-animate>
@@ -357,7 +602,7 @@
           <li>Visual HVAC node-graph editor</li>
           <li>Interactive 3D geometry viewer</li>
           <li>Schedule editor with day/week/year views</li>
-          <li>Run EnergyPlus simulations in your browser</li>
+          <li>Simulates in-browser on <code>@idfkit/engine</code></li>
           <li>Import/export IDF &amp; epJSON</li>
           <li>Dark mode &amp; responsive design</li>
         </ul>
@@ -434,8 +679,24 @@
           <div class="feature-icon feature-icon-browser">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><circle cx="8" cy="21" r="0" fill="currentColor"/><circle cx="16" cy="21" r="0" fill="currentColor"/><path d="M12 17v4M8 21h8"/><circle cx="6" cy="7" r="1" fill="currentColor" stroke="none"/><circle cx="9.5" cy="7" r="1" fill="currentColor" stroke="none"/><path d="M2 9h20"/></svg>
           </div>
-          <h3 class="feature-title">Browser-native simulation</h3>
-          <p class="feature-desc">Run EnergyPlus simulations directly in the browser via Envelop. No installation, no server — just open and simulate.</p>
+          <h3 class="feature-title">Simulation in the browser</h3>
+          <p class="feature-desc">An EnergyPlus build compiled to WebAssembly runs in a worker on the page, with no install or server. Its results match a native build to within 3.5e&minus;9.</p>
+        </div>
+
+        <div class="feature-card" data-animate>
+          <div class="feature-icon feature-icon-versions">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l9 5-9 5-9-5 9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 17l9 5 9-5"/></svg>
+          </div>
+          <h3 class="feature-title">Every version, 8.9 to 26.1</h3>
+          <p class="feature-desc">Both libraries bundle the schemas for 17 EnergyPlus releases. A model is read and written against the version it declares.</p>
+        </div>
+
+        <div class="feature-card" data-animate>
+          <div class="feature-icon feature-icon-ts">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10h6M11 10v7"/><path d="M20 12.5c-.7-.6-1.6-.9-2.5-.9-1.4 0-2.5.7-2.5 1.9 0 2 4.5 1.4 4.5 3.5 0 1.2-1.1 2-2.6 2-1 0-2-.4-2.6-1"/></svg>
+          </div>
+          <h3 class="feature-title">Typed from the schema</h3>
+          <p class="feature-desc">858 interfaces generated per version, so a misspelled field is a compile error rather than a silent run-time surprise. All 17 versions ship in ~1&nbsp;MB gzipped.</p>
         </div>
 
         <div class="feature-card" data-animate>
@@ -444,6 +705,14 @@
           </div>
           <h3 class="feature-title">Intelligent code editing</h3>
           <p class="feature-desc">Autocomplete, hover docs, signature help, and AST-based type inference for IDF files in VS Code.</p>
+        </div>
+
+        <div class="feature-card" data-animate>
+          <div class="feature-icon feature-icon-conformance">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/></svg>
+          </div>
+          <h3 class="feature-title">Conformance, not fixtures</h3>
+          <p class="feature-desc">The test corpus is the EnergyPlus example set. All 760 files parse, write and re-parse to a deeply equal document — 290,313 objects, zero round-trip differences.</p>
         </div>
 
         <div class="feature-card" data-animate>
@@ -468,6 +737,7 @@
       <div class="code-tabs">
         <div class="code-tab-buttons" role="tablist" aria-label="Quick start examples">
           <button class="code-tab-btn active" data-tab="python" role="tab" aria-selected="true" aria-controls="panel-python" id="tab-python">Python</button>
+          <button class="code-tab-btn" data-tab="js" role="tab" aria-selected="false" aria-controls="panel-js" id="tab-js">TypeScript</button>
           <button class="code-tab-btn" data-tab="mcp" role="tab" aria-selected="false" aria-controls="panel-mcp" id="tab-mcp">MCP / AI</button>
           <button class="code-tab-btn" data-tab="web" role="tab" aria-selected="false" aria-controls="panel-web" id="tab-web">Web App</button>
         </div>
@@ -498,6 +768,39 @@ zone.name = <span class="code-string">"Main_Office"</span>
 <span class="code-comment"># Run simulation</span>
 results = model.simulate()
 <span class="code-keyword">print</span>(results.summary())</code></pre>
+          </div>
+        </div>
+
+        <div class="code-panel" data-panel="js" role="tabpanel" id="panel-js" aria-labelledby="tab-js">
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-dot code-dot-red"></span>
+              <span class="code-dot code-dot-yellow"></span>
+              <span class="code-dot code-dot-green"></span>
+              <span class="code-filename">quickstart.ts</span>
+            </div>
+            <pre><code><span class="code-comment">// Install</span>
+<span class="code-keyword">npm install</span> @idfkit/core @idfkit/schemas
+
+<span class="code-keyword">import</span> { loadIdf, saveIdf } <span class="code-keyword">from</span> <span class="code-string">'@idfkit/core/node'</span>;
+<span class="code-keyword">import type</span> { TypeMap } <span class="code-keyword">from</span> <span class="code-string">'@idfkit/core/types/v26-1'</span>;
+<span class="code-keyword">import</span> { createEnergyPlus } <span class="code-keyword">from</span> <span class="code-string">'@idfkit/engine'</span>;
+
+<span class="code-keyword">const</span> doc = <span class="code-keyword">await</span> loadIdf&lt;TypeMap&gt;(<span class="code-string">'building.idf'</span>);
+
+<span class="code-comment">// Typed and autocompleted, from the schema</span>
+<span class="code-keyword">for</span> (<span class="code-keyword">const</span> zone <span class="code-keyword">of</span> doc.all(<span class="code-string">'Zone'</span>)) {
+  console.log(zone.name, zone.ceiling_height);
+}
+
+<span class="code-comment">// Renaming rewrites every reference to the old name</span>
+doc.require(<span class="code-string">'Zone'</span>, <span class="code-string">'SPACE1-1'</span>).name = <span class="code-string">'Open Office'</span>;
+
+<span class="code-keyword">await</span> saveIdf(doc, <span class="code-string">'renamed.idf'</span>);
+
+<span class="code-comment">// Optional: simulate with EnergyPlus compiled to WebAssembly</span>
+<span class="code-keyword">const</span> ep = <span class="code-keyword">await</span> createEnergyPlus({ assetBaseUrl: <span class="code-string">'/energyplus'</span> });
+<span class="code-keyword">const</span> result = <span class="code-keyword">await</span> ep.run({ idf, epw });</code></pre>
           </div>
         </div>
 
@@ -543,9 +846,9 @@ results = model.simulate()
 <span class="code-keyword">5.</span> View 3D geometry in real-time
 <span class="code-keyword">6.</span> Simulate with in-browser EnergyPlus
 
-<span class="code-comment"># Powered by WebAssembly</span>
+<span class="code-comment"># Powered by @idfkit/engine (WebAssembly)</span>
 <span class="code-comment"># No server required</span>
-<span class="code-comment"># Works offline</span></code></pre>
+<span class="code-comment"># Works offline once the engine is cached</span></code></pre>
           </div>
         </div>
       </div>
@@ -652,12 +955,18 @@ results = model.simulate()
           <a href="https://github.com/idfkit/idfkit-lsp" target="_blank" rel="noopener">idfkit-lsp</a>
           <a href="https://github.com/idfkit/idfkit-docs" target="_blank" rel="noopener">idfkit-docs</a>
           <a href="https://github.com/idfkit/idfkit-plugin" target="_blank" rel="noopener">idfkit-plugin</a>
+          <a href="https://github.com/idfkit/idfkit-js" target="_blank" rel="noopener">idfkit-js</a>
+          <a href="https://www.npmjs.com/package/@idfkit/engine" target="_blank" rel="noopener">@idfkit/engine</a>
           <a href="https://app.idfkit.com" target="_blank" rel="noopener">Envelop</a>
+          <a href="https://shoebox.idfkit.com" target="_blank" rel="noopener">Shoebox</a>
         </div>
         <div class="footer-copy">
           MIT License
         </div>
       </div>
+      <p class="footer-attribution">
+        <code>@idfkit/engine-assets</code> redistributes EnergyPlus version 26.1.0 software in compiled form, under the EnergyPlus licence. EnergyPlus is developed by NREL and the U.S. Department of Energy. This project is not affiliated with, endorsed by, or sponsored by NREL, the U.S. Department of Energy, or any EnergyPlus copyright holder; the name is used solely to identify the software these tools work with. Everything written here is MIT licensed.
+      </p>
     </div>
   </footer>
 
