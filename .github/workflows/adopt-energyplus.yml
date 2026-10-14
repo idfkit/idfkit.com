@@ -1,0 +1,45 @@
+# Adopt one EnergyPlus release, as a pull request (feature 012 of the unification).
+#
+# This repository is `idfkit.com` in the version roster, governance/energyplus.toml in
+# idfkit-conformance. The called workflow reads the roster at the pinned tag, rewrites the
+# statements the roster declares for this project, and opens a pull request on the branch
+# energyplus/X.Y.Z. It never merges. This file carries no other logic.
+#
+# Three facts for a reviewer of that pull request, as of the pinned tag:
+#   1. The roster declares no gate and no reviewed step for this project, so the pull request is
+#      opened ready for review, not as a draft, and no check runs on it.
+#   2. The site is served from the default branch, so merging the pull request publishes it.
+#   3. A run dispatched by hand does not evaluate the project's opening condition and accepts any
+#      published release, including one older than the release the site already states. Only the
+#      watch in idfkit-conformance enforces both. Confirm the release before merging.
+#
+# The tag is written twice, on `uses:` and as the input, because a called workflow cannot see its
+# own ref. The called workflow refuses the run unless the two are identical. Move both together,
+# and only to a tag that exists.
+
+name: adopt-energyplus
+
+run-name: Adopt EnergyPlus ${{ inputs.release }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: The EnergyPlus release to adopt, as X.Y.Z.
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  adopt:
+    uses: idfkit/idfkit-conformance/.github/workflows/adopt-energyplus.yml@governance-2026.25
+    with:
+      project: idfkit.com
+      governance_level: governance-2026.25
+      release: ${{ inputs.release }}
+    secrets:
+      APP_ID: ${{ secrets.APP_ID }}
+      APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
