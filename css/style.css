@@ -163,27 +163,10 @@ img {
   height: 72px;
 }
 
-.nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 700;
-  font-size: 1.15rem;
-  letter-spacing: -0.02em;
-}
-
-/* The mark, inlined in currentColor beside the wordmark (brand/brand-page/ shows its rules). */
-.nav-logo-icon {
-  display: inline-flex;
-  width: 22px;
-  height: 22px;
-  color: var(--color-text);
-}
-
-.nav-logo-icon svg {
-  width: 100%;
-  height: 100%;
-  display: block;
+/* The lockup is the standard's (brand/hosts/idfkit.com/lockup.css); only its size is the page's. */
+.nav-logo,
+.footer-brand {
+  --idfkit-lockup-mark: 1.375rem;
 }
 
 .nav-links {

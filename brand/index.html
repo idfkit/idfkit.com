@@ -33,6 +33,7 @@
   main { max-width: 72rem; margin: 0 auto; padding: var(--idfkit-space-6) var(--idfkit-space-3) var(--idfkit-space-12); }
   header.page { display: flex; align-items: center; justify-content: space-between; gap: var(--idfkit-space-3); flex-wrap: wrap; padding-bottom: var(--idfkit-space-3); border-bottom: 1px solid var(--idfkit-color-border); }
   header.page svg { height: 2rem; width: auto; }
+  header.page > a { color: var(--idfkit-color-ink); }
   h1 { font-size: 2.25rem; font-weight: var(--idfkit-font-weight-extrabold); letter-spacing: -0.03em; margin: var(--idfkit-space-6) 0 var(--idfkit-space-1); }
   h2 { font-size: 1.5rem; font-weight: var(--idfkit-font-weight-bold); letter-spacing: -0.02em; margin: var(--idfkit-space-8) 0 var(--idfkit-space-2); }
   h3 { font-size: 1.05rem; font-weight: var(--idfkit-font-weight-semibold); margin: var(--idfkit-space-3) 0 var(--idfkit-space-1); }
@@ -216,7 +217,7 @@
   <ul>
     <li><strong>mcp.idfkit.com</strong>, <code>theme.light</code>, since identity-2026.1: The deployment&#x27;s stock API documentation pages at server.idfkit.com/docs and /redoc are served by the gateway framework and carry its own look; no visitor is sent to them, and they are outside this host. Recorded here, under the MCP property, as the one surface of the MCP product the standard does not reach.</li>
     <li><strong>app.idfkit.com</strong>, <code>color.role.accent</code>, since identity-2026.1: In the dark theme the role&#x27;s value (blue-500, #3b82f6) measures 3.98:1 on the application&#x27;s own raised surface (its neutral-800, #1e293b), under the 4.5:1 floor the application&#x27;s token tests hold for links on that surface. The application aliases --accent in the dark theme to --p-brand-blue-400 (#60a5fa, 5.75:1), the next step of the same ramp; the light theme takes the role as declared.</li>
-    <li><strong>auth.idfkit.com</strong>, <code>marks/mark.svg</code>, since identity-2026.1: the hosted widget takes a logo image by URL; the mark cannot be inlined in currentColor or sized by the page. Schema: @stytch/core 2.66.1, StyleConfig.</li>
+    <li><strong>auth.idfkit.com</strong>, <code>marks/mark.svg</code>, since identity-2026.1: the hosted widget&#x27;s logo slot takes an image by URL and is left unset; the page&#x27;s header carries the lockup. Schema: @stytch/core 2.66.1, StyleConfig.</li>
     <li><strong>auth.idfkit.com</strong>, <code>font.family.code</code>, since identity-2026.1: the hosted widget takes one fontFamily for all its text; code and labels cannot be set in the label face. Schema: @stytch/core 2.66.1, StyleConfig.</li>
     <li><strong>auth.idfkit.com</strong>, <code>font.weight.semibold</code>, since identity-2026.1: the hosted widget takes a family, not weights; its buttons and headings render at the provider&#x27;s own weights. Schema: @stytch/core 2.66.1, StyleConfig.</li>
     <li><strong>auth.idfkit.com</strong>, <code>color.role.focus</code>, since identity-2026.1: the hosted widget draws its own focus ring; the schema exposes no focus colour. Schema: @stytch/core 2.66.1, StyleConfig.</li>
