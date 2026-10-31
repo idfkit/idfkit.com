@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>idfkit brand</title>
+<meta name="description" content="The idfkit visual identity: the mark, its rules, the colours in both themes, the typefaces, and the exceptions, at identity-2026.1.">
+<!--
+  The brand page (FR-034, research R16). build.py renders it from the standard at the tag; the
+  marketing site vendors it unchanged and serves it at /brand/. It expects the css derivation
+  beside it at css/ and its own images at brand-page/assets/, which is where the identity-adopt
+  skill places them on idfkit.com. Every value here is a token name or a build variable.
+-->
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/motion.css">
+<link rel="stylesheet" href="css/forced-colors.css">
+<!-- idfkit identity identity-2026.1: the favicon set, both theme colours and the social image of https://idfkit.com. Paths are relative to the host's root; the identity-adopt skill rewrites the prefix where a host serves this directory elsewhere. -->
+<link rel="icon" href="/brand/hosts/idfkit.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/brand/hosts/idfkit.com/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="/brand/hosts/idfkit.com/apple-touch-icon.png">
+<link rel="manifest" href="/brand/hosts/idfkit.com/manifest.webmanifest">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#060a14">
+<meta property="og:image" content="https://idfkit.com/brand/hosts/idfkit.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://idfkit.com/brand/hosts/idfkit.com/og.png">
+
+<style>
+  body { margin: 0; background: var(--idfkit-color-ground); color: var(--idfkit-color-ink); font-family: var(--idfkit-font-text); line-height: 1.6; }
+  main { max-width: 72rem; margin: 0 auto; padding: var(--idfkit-space-6) var(--idfkit-space-3) var(--idfkit-space-12); }
+  header.page { display: flex; align-items: center; justify-content: space-between; gap: var(--idfkit-space-3); flex-wrap: wrap; padding-bottom: var(--idfkit-space-3); border-bottom: 1px solid var(--idfkit-color-border); }
+  header.page svg { height: 2rem; width: auto; }
+  h1 { font-size: 2.25rem; font-weight: var(--idfkit-font-weight-extrabold); letter-spacing: -0.03em; margin: var(--idfkit-space-6) 0 var(--idfkit-space-1); }
+  h2 { font-size: 1.5rem; font-weight: var(--idfkit-font-weight-bold); letter-spacing: -0.02em; margin: var(--idfkit-space-8) 0 var(--idfkit-space-2); }
+  h3 { font-size: 1.05rem; font-weight: var(--idfkit-font-weight-semibold); margin: var(--idfkit-space-3) 0 var(--idfkit-space-1); }
+  p, li { max-width: 70ch; }
+  .lede { color: var(--idfkit-color-ink-muted); font-size: 1.1rem; }
+  .eyebrow { font-family: var(--idfkit-font-code); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--idfkit-color-ink-label); }
+  a { color: var(--idfkit-color-link); }
+  a:focus-visible { outline: 2px solid var(--idfkit-color-focus); outline-offset: 2px; border-radius: var(--idfkit-radius-sm); }
+  code { font-family: var(--idfkit-font-code); font-size: 0.9em; background: var(--idfkit-color-surface-raised); padding: 0.1em 0.35em; border-radius: var(--idfkit-radius-sm); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: var(--idfkit-space-2); }
+  .specimen { border: 1px solid var(--idfkit-color-border); border-radius: var(--idfkit-radius-lg); overflow: hidden; background: var(--idfkit-color-surface); }
+  .specimen .ground { display: flex; align-items: center; justify-content: center; height: 9rem; padding: var(--idfkit-space-2); }
+  .specimen .ground.dark { background: var(--idfkit-color-primitive-navy-950); }
+  .specimen .ground.light { background: var(--idfkit-color-primitive-white); }
+  .specimen .ground.split { background: linear-gradient(90deg, var(--idfkit-color-primitive-white) 50%, var(--idfkit-color-primitive-navy-950) 50%); }
+  .specimen img, .specimen svg { max-height: 6rem; max-width: 90%; }
+  .specimen .caption { padding: var(--idfkit-space-1) var(--idfkit-space-2); font-size: 0.85rem; display: flex; justify-content: space-between; gap: var(--idfkit-space-1); flex-wrap: wrap; }
+  .specimen .caption span { color: var(--idfkit-color-ink-muted); }
+  .no { position: relative; }
+  .no .ground::after { content: "incorrect"; position: absolute; top: var(--idfkit-space-1); right: var(--idfkit-space-1); font-family: var(--idfkit-font-code); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--idfkit-color-status-error); }
+  table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+  th, td { text-align: left; padding: var(--idfkit-space-1) var(--idfkit-space-2); border-bottom: 1px solid var(--idfkit-color-border); vertical-align: top; }
+  th { font-weight: var(--idfkit-font-weight-semibold); color: var(--idfkit-color-ink-muted); font-size: 0.8rem; }
+  .swatch { display: inline-block; width: 1.25rem; height: 1.25rem; border-radius: var(--idfkit-radius-sm); border: 1px solid var(--idfkit-color-border); vertical-align: middle; margin-right: var(--idfkit-space-1); }
+  .type-specimen { font-size: 2rem; line-height: 1.2; margin: var(--idfkit-space-1) 0; }
+  .type-specimen.code { font-family: var(--idfkit-font-code); font-size: 1.25rem; }
+  .idfkit-family { display: flex; gap: var(--idfkit-space-2); flex-wrap: wrap; font-size: 0.9rem; }
+  .idfkit-family a { color: var(--idfkit-color-ink-muted); text-decoration: none; }
+  .idfkit-family a[aria-current="page"] { color: var(--idfkit-color-accent); font-weight: var(--idfkit-font-weight-semibold); }
+  footer.page { margin-top: var(--idfkit-space-8); padding-top: var(--idfkit-space-3); border-top: 1px solid var(--idfkit-color-border); display: flex; flex-wrap: wrap; gap: var(--idfkit-space-2); justify-content: space-between; color: var(--idfkit-color-ink-muted); font-size: 0.9rem; }
+  .gradient { height: 3rem; border-radius: var(--idfkit-radius-md); background: linear-gradient(135deg, var(--idfkit-color-gradient-start) 0%, var(--idfkit-color-gradient-mid) 40%, var(--idfkit-color-gradient-end) 100%); }
+  .ratio-pass { color: var(--idfkit-color-status-success); font-family: var(--idfkit-font-code); }
+</style>
+</head>
+<body>
+<main>
+  <header class="page">
+    <a href="/" aria-label="idfkit"><svg class="idfkit-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 338.36 80.78" role="img" aria-label="idfkit"><g transform="translate(-8.00 -8.00) scale(2.0000)"><path fill="currentColor" d="M4 15a3 3 0 0 1 3-3h17v12h12v17a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3Z"/><path fill="currentColor" d="M34 4h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/></g><g transform="translate(104.00 2.61)"><path fill="currentColor" transform="translate(-5.32 77.39)" d="M5.62 0.00V-54.59H22.66V0.00ZM14.11 -60.99Q10.50 -60.99 7.91 -63.38Q5.32 -65.77 5.32 -69.19Q5.32 -72.61 7.91 -75.00Q10.50 -77.39 14.11 -77.39Q17.77 -77.39 20.36 -75.00Q22.95 -72.61 22.95 -69.19Q22.95 -65.77 20.36 -63.38Q17.77 -60.99 14.11 -60.99ZM50.21 0.78Q44.16 0.78 39.18 -2.37Q34.20 -5.52 31.27 -11.74Q28.34 -17.97 28.34 -27.25Q28.34 -36.82 31.39 -43.02Q34.44 -49.22 39.40 -52.25Q44.35 -55.27 50.06 -55.27Q54.41 -55.27 57.49 -53.78Q60.56 -52.29 62.54 -49.98Q64.52 -47.66 65.54 -45.21H65.93V-72.75H82.93V0.00H66.13V-8.84H65.54Q63.93 -5.13 60.20 -2.17Q56.46 0.78 50.21 0.78ZM56.02 -12.50Q60.86 -12.50 63.59 -16.53Q66.32 -20.56 66.32 -27.25Q66.32 -34.03 63.61 -37.99Q60.90 -41.94 56.02 -41.94Q51.09 -41.94 48.48 -37.92Q45.87 -33.89 45.87 -27.25Q45.87 -20.61 48.48 -16.55Q51.09 -12.50 56.02 -12.50ZM123.13 -54.59V-41.94H112.19V0.00H95.25V-41.94H86.07V-54.59H95.25V-57.52Q95.25 -66.89 100.42 -71.53Q105.60 -76.17 113.80 -76.17Q117.41 -76.17 120.59 -75.61Q123.76 -75.05 125.28 -74.61L122.54 -62.16Q121.56 -62.40 120.25 -62.62Q118.93 -62.84 117.61 -62.84Q114.58 -62.84 113.39 -61.45Q112.19 -60.06 112.19 -57.67V-54.59ZM128.17 0.00V-72.75H145.21V-34.86H145.99L161.62 -54.59H181.00L161.52 -30.76L181.79 0.00H162.11L148.83 -20.85L145.21 -16.55V0.00ZM183.95 0.00V-54.59H200.99V0.00ZM192.45 -60.99Q188.83 -60.99 186.24 -63.38Q183.66 -65.77 183.66 -69.19Q183.66 -72.61 186.24 -75.00Q188.83 -77.39 192.45 -77.39Q196.11 -77.39 198.70 -75.00Q201.28 -72.61 201.28 -69.19Q201.28 -65.77 198.70 -63.38Q196.11 -60.99 192.45 -60.99ZM238.21 -54.59V-41.94H228.40V-16.70Q228.40 -12.45 232.74 -12.45Q233.62 -12.45 235.21 -12.67Q236.80 -12.89 237.48 -13.04L239.68 -0.63Q236.80 0.20 234.11 0.49Q231.43 0.78 229.03 0.78Q220.34 0.78 215.85 -3.30Q211.36 -7.37 211.36 -15.19V-41.94H204.13V-54.59H211.36V-67.58H228.40V-54.59Z"/></g></svg></a>
+    <nav aria-label="idfkit" class="idfkit-family">
+    <a href="https://idfkit.com" aria-current="page">idfkit</a>
+    <a href="https://developers.idfkit.com">Developers</a>
+    <a href="https://docs.idfkit.com">EnergyPlus docs</a>
+    <a href="https://app.idfkit.com">Envelop</a>
+    <a href="https://mcp.idfkit.com">MCP</a>
+    <a href="https://shoebox.idfkit.com">Shoebox</a>
+    <a href="https://github.com/idfkit">GitHub</a>
+  </nav>
+  </header>
+
+  <p class="eyebrow">Brand · identity-2026.1</p>
+  <h1>The idfkit identity</h1>
+  <p class="lede">One mark, one accent, one pair of typefaces, on every idfkit host and repository. This page describes the standard at <code>identity-2026.1</code>, the version the site you are reading renders; every file here is generated from that tag and can be downloaded from its release.</p>
+
+  <h2 id="mark">The mark</h2>
+  <p>A block with one piece lifted out of its slot: a kit of parts that fit together, as an EnergyPlus model is objects assembled into a building. It is drawn on a 48-unit grid in one colour and is never drawn in two colours, never outlined, never rotated, and never given a gradient. Inline, it takes the colour of the surrounding text.</p>
+  <div class="grid">
+    <figure class="specimen"><div class="ground split"><img src="brand-page/assets/mark.svg" alt="mark.svg"></div><figcaption class="caption"><strong>mark.svg</strong><span>the mark in currentColor; inline it</span><a href="brand-page/assets/mark.svg" download>download</a></figcaption></figure>
+    <figure class="specimen"><div class="ground dark"><img src="brand-page/assets/mark-on-dark.svg" alt="mark-on-dark.svg"></div><figcaption class="caption"><strong>mark-on-dark.svg</strong><span>fixed ink for dark grounds</span><a href="https://github.com/idfkit/idfkit-brand/releases/download/identity-2026.1/mark-on-dark.svg" download>download</a></figcaption></figure>
+    <figure class="specimen"><div class="ground light"><img src="brand-page/assets/mark-on-light.svg" alt="mark-on-light.svg"></div><figcaption class="caption"><strong>mark-on-light.svg</strong><span>fixed ink for light grounds</span><a href="https://github.com/idfkit/idfkit-brand/releases/download/identity-2026.1/mark-on-light.svg" download>download</a></figcaption></figure>
+    <figure class="specimen"><div class="ground split"><img src="brand-page/assets/tile.svg" alt="tile.svg"></div><figcaption class="caption"><strong>tile.svg</strong><span>the tile: favicons and app icons</span><a href="https://github.com/idfkit/idfkit-brand/releases/download/identity-2026.1/tile.svg" download>download</a></figcaption></figure>
+    <figure class="specimen"><div class="ground split"><img src="brand-page/assets/mark-small.svg" alt="mark-small.svg"></div><figcaption class="caption"><strong>mark-small.svg</strong><span>the 16-unit redraw for 16 and 32 px</span><a href="brand-page/assets/mark-small.svg" download>download</a></figcaption></figure>
+  </div>
+
+  <h3>Clear space and minimum size</h3>
+  <ul>
+    <li>Clear space on every side of the mark or lockup is the width of the piece, which is 0.3 of the mark's ink height. Nothing else sits inside it.</li>
+    <li>The mark is never set smaller than 16 px. Below 24 px, use the tile, whose 16 and 32 px rasters are drawn on whole pixels.</li>
+    <li>The lockup is never set lower than 24 px.</li>
+  </ul>
+
+  <h3>The lockup and the property lockup</h3>
+  <p>The lockup is the mark's ink at 80 units, sitting on the wordmark's baseline, with a gap of 0.3 of the mark's height. The wordmark is "idfkit", lowercase, in Inter ExtraBold at -0.035 em, outlined. The name is written <strong>idfkit</strong>, in lowercase, everywhere it appears, including at the start of a sentence.</p>
+  <p>A product or property name appears only inside the lockup: the mark, the name, a divider, and the property name set in the label face. The property is told apart in words, never by a hue of its own.</p>
+  <div class="grid">
+    <figure class="specimen"><div class="ground dark"><img src="brand-page/assets/lockup-on-dark.svg" alt="lockup-on-dark.svg"></div><figcaption class="caption"><strong>lockup-on-dark.svg</strong><span>the lockup for dark grounds</span><a href="https://github.com/idfkit/idfkit-brand/releases/download/identity-2026.1/lockup-on-dark.svg" download>download</a></figcaption></figure>
+    <figure class="specimen"><div class="ground light"><img src="brand-page/assets/lockup-on-light.svg" alt="lockup-on-light.svg"></div><figcaption class="caption"><strong>lockup-on-light.svg</strong><span>the lockup for light grounds</span><a href="https://github.com/idfkit/idfkit-brand/releases/download/identity-2026.1/lockup-on-light.svg" download>download</a></figcaption></figure>
+    <figure class="specimen"><div class="ground dark"><img src="brand-page/assets/lockup-developers.svg" alt="idfkit Developers"></div><figcaption class="caption"><strong>idfkit Developers</strong><span>the property lockup of developers.idfkit.com</span></figcaption></figure>
+    <figure class="specimen"><div class="ground dark"><img src="brand-page/assets/lockup-mcp.svg" alt="idfkit MCP"></div><figcaption class="caption"><strong>idfkit MCP</strong><span>the property lockup of mcp.idfkit.com</span></figcaption></figure>
+    <figure class="specimen"><div class="ground dark"><img src="brand-page/assets/lockup-docs.svg" alt="idfkit EnergyPlus docs"></div><figcaption class="caption"><strong>idfkit EnergyPlus docs</strong><span>the property lockup of docs.idfkit.com</span></figcaption></figure>
+    <figure class="specimen"><div class="ground dark"><img src="brand-page/assets/lockup-app.svg" alt="idfkit Envelop"></div><figcaption class="caption"><strong>idfkit Envelop</strong><span>the property lockup of app.idfkit.com</span></figcaption></figure>
+    <figure class="specimen"><div class="ground dark"><img src="brand-page/assets/lockup-auth.svg" alt="idfkit Sign in"></div><figcaption class="caption"><strong>idfkit Sign in</strong><span>the property lockup of auth.idfkit.com</span></figcaption></figure>
+    <figure class="specimen"><div class="ground dark"><img src="brand-page/assets/lockup-shoebox.svg" alt="idfkit Shoebox"></div><figcaption class="caption"><strong>idfkit Shoebox</strong><span>the property lockup of shoebox.idfkit.com</span></figcaption></figure>
+  </div>
+
+  <h3>Incorrect uses</h3>
+  <div class="grid">
+    <figure class="specimen no"><div class="ground dark"><img src="brand-page/assets/incorrect-stretched.svg" alt="Stretched"></div><figcaption class="caption"><strong>Stretched</strong><span>never scaled on one axis</span></figcaption></figure>
+    <figure class="specimen no"><div class="ground dark"><img src="brand-page/assets/incorrect-rotated.svg" alt="Rotated"></div><figcaption class="caption"><strong>Rotated</strong><span>never rotated</span></figcaption></figure>
+    <figure class="specimen no"><div class="ground dark"><img src="brand-page/assets/incorrect-low-contrast.svg" alt="Low contrast"></div><figcaption class="caption"><strong>Low contrast</strong><span>never on a ground neither ink reaches 4.5:1 on</span></figcaption></figure>
+    <figure class="specimen no"><div class="ground dark"><img src="brand-page/assets/incorrect-gradient.svg" alt="Recoloured"></div><figcaption class="caption"><strong>Recoloured</strong><span>never filled with the gradient</span></figcaption></figure>
+    <figure class="specimen no"><div class="ground dark"><img src="brand-page/assets/incorrect-two-tone.svg" alt="Two colours"></div><figcaption class="caption"><strong>Two colours</strong><span>never drawn in two colours</span></figcaption></figure>
+    <figure class="specimen no"><div class="ground dark"><img src="brand-page/assets/incorrect-outlined.svg" alt="Outlined"></div><figcaption class="caption"><strong>Outlined</strong><span>never outlined</span></figcaption></figure>
+  </div>
+
+  <h2 id="colour">Colour</h2>
+  <p>Two themes, light and dark, following the visitor's system preference. One accent, the same hue in both themes and one step apart, for the current link, the primary action and focus. Every pair below is measured by the standard's validator at every release; the ratios are WCAG 2.1 contrast, and each meets its threshold in both themes.</p>
+  <div class="gradient" role="img" aria-label="The brand sweep, blue to violet to red"></div>
+  <p>The sweep is a surface for nothing that must be read: hairlines, a glow, the hero's bloom.</p>
+  <table>
+    <thead><tr><th>Role</th><th>Light</th><th>Dark</th><th>Usage</th></tr></thead>
+    <tbody>
+      <tr><td>ground</td><td><span class="swatch" style="background:#ffffff"></span><code>#ffffff</code></td><td><span class="swatch" style="background:#060a14"></span><code>#060a14</code></td><td>The page background.</td></tr>
+      <tr><td>surface</td><td><span class="swatch" style="background:#f8fafc"></span><code>#f8fafc</code></td><td><span class="swatch" style="background:#0c1222"></span><code>#0c1222</code></td><td>A section or panel one step off the ground.</td></tr>
+      <tr><td>surface-raised</td><td><span class="swatch" style="background:#f1f5f9"></span><code>#f1f5f9</code></td><td><span class="swatch" style="background:#0f1629"></span><code>#0f1629</code></td><td>A card or code block two steps off the ground.</td></tr>
+      <tr><td>border</td><td><span class="swatch" style="background:#e2e8f0"></span><code>#e2e8f0</code></td><td><span class="swatch" style="background:#141d35"></span><code>#141d35</code></td><td>A one-pixel rule between surfaces. Not an ink: it is not held to a text ratio.</td></tr>
+      <tr><td>ink</td><td><span class="swatch" style="background:#0b1020"></span><code>#0b1020</code></td><td><span class="swatch" style="background:#e2e8f0"></span><code>#e2e8f0</code></td><td>Body text and headings, on every ground and surface.</td></tr>
+      <tr><td>ink-muted</td><td><span class="swatch" style="background:#475569"></span><code>#475569</code></td><td><span class="swatch" style="background:#94a3b8"></span><code>#94a3b8</code></td><td>Secondary copy: descriptions, captions, metadata set at body size.</td></tr>
+      <tr><td>ink-label</td><td><span class="swatch" style="background:#64748b"></span><code>#64748b</code></td><td><span class="swatch" style="background:#64748b"></span><code>#64748b</code></td><td>Labels at 24 px or larger, eyebrows, and non-text elements such as the lockup&#x27;s divider. Never body text: it meets 3:1 and not 4.5:1 (research R8).</td></tr>
+      <tr><td>accent</td><td><span class="swatch" style="background:#2563eb"></span><code>#2563eb</code></td><td><span class="swatch" style="background:#3b82f6"></span><code>#3b82f6</code></td><td>The one brand accent: the primary action&#x27;s ground, the current link, and emphasis. Same hue in both themes, one step apart (FR-013).</td></tr>
+      <tr><td>accent-ink</td><td><span class="swatch" style="background:#ffffff"></span><code>#ffffff</code></td><td><span class="swatch" style="background:#060a14"></span><code>#060a14</code></td><td>Text set on the accent: the primary button&#x27;s label. Dark ink on the dark theme&#x27;s accent, white on the light theme&#x27;s.</td></tr>
+      <tr><td>link</td><td><span class="swatch" style="background:#2563eb"></span><code>#2563eb</code></td><td><span class="swatch" style="background:#3b82f6"></span><code>#3b82f6</code></td><td>An inline link in running text.</td></tr>
+      <tr><td>focus</td><td><span class="swatch" style="background:#2563eb"></span><code>#2563eb</code></td><td><span class="swatch" style="background:#3b82f6"></span><code>#3b82f6</code></td><td>The focus ring, a non-text element held to 3:1 against the grounds it is drawn on.</td></tr>
+      <tr><td>gradient-start</td><td><span class="swatch" style="background:#3b82f6"></span><code>#3b82f6</code></td><td><span class="swatch" style="background:#3b82f6"></span><code>#3b82f6</code></td><td>The brand sweep&#x27;s first stop. The gradient is a surface for nothing that must be read: hairlines, the hero&#x27;s bloom, a button&#x27;s glow (research R8).</td></tr>
+      <tr><td>gradient-mid</td><td><span class="swatch" style="background:#8b5cf6"></span><code>#8b5cf6</code></td><td><span class="swatch" style="background:#8b5cf6"></span><code>#8b5cf6</code></td><td>The brand sweep&#x27;s middle stop, at 40 percent.</td></tr>
+      <tr><td>gradient-end</td><td><span class="swatch" style="background:#ef4444"></span><code>#ef4444</code></td><td><span class="swatch" style="background:#ef4444"></span><code>#ef4444</code></td><td>The brand sweep&#x27;s last stop.</td></tr>
+      <tr><td>status.error</td><td><span class="swatch" style="background:#dc2626"></span><code>#dc2626</code></td><td><span class="swatch" style="background:#ef4444"></span><code>#ef4444</code></td><td>An error message or state, as text on the ground.</td></tr>
+      <tr><td>status.warning</td><td><span class="swatch" style="background:#b45309"></span><code>#b45309</code></td><td><span class="swatch" style="background:#f59e0b"></span><code>#f59e0b</code></td><td>A warning message or state, as text on the ground.</td></tr>
+      <tr><td>status.success</td><td><span class="swatch" style="background:#15803d"></span><code>#15803d</code></td><td><span class="swatch" style="background:#22c55e"></span><code>#22c55e</code></td><td>A success message or state, as text on the ground.</td></tr>
+    </tbody>
+  </table>
+  <h3>Measured pairs</h3>
+  <table>
+    <thead><tr><th>Pair</th><th>Threshold</th><th>Light</th><th>Dark</th></tr></thead>
+    <tbody>
+      <tr><td>ink on ground</td><td>4.5:1</td><td><span class="ratio-pass">18.93</span></td><td><span class="ratio-pass">16.05</span></td></tr>
+      <tr><td>ink on surface</td><td>4.5:1</td><td><span class="ratio-pass">18.10</span></td><td><span class="ratio-pass">15.14</span></td></tr>
+      <tr><td>ink on surface-raised</td><td>4.5:1</td><td><span class="ratio-pass">17.28</span></td><td><span class="ratio-pass">14.60</span></td></tr>
+      <tr><td>ink-muted on ground</td><td>4.5:1</td><td><span class="ratio-pass">7.58</span></td><td><span class="ratio-pass">7.72</span></td></tr>
+      <tr><td>ink-muted on surface</td><td>4.5:1</td><td><span class="ratio-pass">7.24</span></td><td><span class="ratio-pass">7.28</span></td></tr>
+      <tr><td>ink-muted on surface-raised</td><td>4.5:1</td><td><span class="ratio-pass">6.92</span></td><td><span class="ratio-pass">7.02</span></td></tr>
+      <tr><td>ink-label on ground</td><td>3:1</td><td><span class="ratio-pass">4.76</span></td><td><span class="ratio-pass">4.16</span></td></tr>
+      <tr><td>ink-label on surface</td><td>3:1</td><td><span class="ratio-pass">4.55</span></td><td><span class="ratio-pass">3.92</span></td></tr>
+      <tr><td>ink-label on surface-raised</td><td>3:1</td><td><span class="ratio-pass">4.34</span></td><td><span class="ratio-pass">3.78</span></td></tr>
+      <tr><td>accent on ground</td><td>4.5:1</td><td><span class="ratio-pass">5.17</span></td><td><span class="ratio-pass">5.38</span></td></tr>
+      <tr><td>accent on surface</td><td>4.5:1</td><td><span class="ratio-pass">4.94</span></td><td><span class="ratio-pass">5.07</span></td></tr>
+      <tr><td>accent on surface-raised</td><td>4.5:1</td><td><span class="ratio-pass">4.72</span></td><td><span class="ratio-pass">4.89</span></td></tr>
+      <tr><td>accent-ink on accent</td><td>4.5:1</td><td><span class="ratio-pass">5.17</span></td><td><span class="ratio-pass">5.38</span></td></tr>
+      <tr><td>link on ground</td><td>4.5:1</td><td><span class="ratio-pass">5.17</span></td><td><span class="ratio-pass">5.38</span></td></tr>
+      <tr><td>link on surface</td><td>4.5:1</td><td><span class="ratio-pass">4.94</span></td><td><span class="ratio-pass">5.07</span></td></tr>
+      <tr><td>link on surface-raised</td><td>4.5:1</td><td><span class="ratio-pass">4.72</span></td><td><span class="ratio-pass">4.89</span></td></tr>
+      <tr><td>focus on ground</td><td>3:1</td><td><span class="ratio-pass">5.17</span></td><td><span class="ratio-pass">5.38</span></td></tr>
+      <tr><td>focus on surface</td><td>3:1</td><td><span class="ratio-pass">4.94</span></td><td><span class="ratio-pass">5.07</span></td></tr>
+      <tr><td>focus on surface-raised</td><td>3:1</td><td><span class="ratio-pass">4.72</span></td><td><span class="ratio-pass">4.89</span></td></tr>
+      <tr><td>status.error on ground</td><td>4.5:1</td><td><span class="ratio-pass">4.83</span></td><td><span class="ratio-pass">5.26</span></td></tr>
+      <tr><td>status.error on surface</td><td>4.5:1</td><td><span class="ratio-pass">4.62</span></td><td><span class="ratio-pass">4.96</span></td></tr>
+      <tr><td>status.warning on ground</td><td>4.5:1</td><td><span class="ratio-pass">5.02</span></td><td><span class="ratio-pass">9.21</span></td></tr>
+      <tr><td>status.warning on surface</td><td>4.5:1</td><td><span class="ratio-pass">4.80</span></td><td><span class="ratio-pass">8.69</span></td></tr>
+      <tr><td>status.success on ground</td><td>4.5:1</td><td><span class="ratio-pass">5.02</span></td><td><span class="ratio-pass">8.68</span></td></tr>
+      <tr><td>status.success on surface</td><td>4.5:1</td><td><span class="ratio-pass">4.79</span></td><td><span class="ratio-pass">8.19</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="type">Typefaces</h2>
+  <p><strong>Inter</strong> for text, at the weights 400, 500, 600, 700, 800; <strong>"JetBrains Mono"</strong> for code and labels, at 400, 500. Both are served from each host's own origin, as Latin subsets under the SIL Open Font License, with the fallback stacks below. No host loads a font from a third party.</p>
+  <p class="type-specimen">Modern tools for building energy simulation</p>
+  <p class="type-specimen code">load_idf("office.idf")</p>
+  <table>
+    <thead><tr><th>Role</th><th>Family</th><th>Fallback stack</th></tr></thead>
+    <tbody>
+      <tr><td>Text</td><td>Inter</td><td><code>Inter, system-ui, "-apple-system", "Segoe UI", Roboto, sans-serif</code></td></tr>
+      <tr><td>Code and labels</td><td>"JetBrains Mono"</td><td><code>"JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace</code></td></tr>
+    </tbody>
+  </table>
+  <p>The files are in the <code>css.tar.gz</code> archive of the <a href="https://github.com/idfkit/idfkit-brand/releases/tag/identity-2026.1">identity-2026.1 release</a>, under <code>fonts/</code>, with their licences.</p>
+
+  <h2 id="family">The family</h2>
+  <p>Every idfkit host carries these links, in this order, and marks the one you are on:</p>
+  <nav aria-label="idfkit" class="idfkit-family">
+    <a href="https://idfkit.com" aria-current="page">idfkit</a>
+    <a href="https://developers.idfkit.com">Developers</a>
+    <a href="https://docs.idfkit.com">EnergyPlus docs</a>
+    <a href="https://app.idfkit.com">Envelop</a>
+    <a href="https://mcp.idfkit.com">MCP</a>
+    <a href="https://shoebox.idfkit.com">Shoebox</a>
+    <a href="https://github.com/idfkit">GitHub</a>
+  </nav>
+  <p>Every host and repository carries the same statement of ownership: <em>An idfkit project. MIT License.</em></p>
+
+  <h2 id="exceptions">Exceptions</h2>
+  <p>Where a host's rendering mechanism cannot express part of the standard, the part and the reason are recorded here rather than left unstated. The list is complete: an unrecorded deviation fails that host's check.</p>
+  <ul>
+    <li><strong>mcp.idfkit.com</strong>, <code>theme.light</code>, since identity-2026.1: The deployment&#x27;s stock API documentation pages at server.idfkit.com/docs and /redoc are served by the gateway framework and carry its own look; no visitor is sent to them, and they are outside this host. Recorded here, under the MCP property, as the one surface of the MCP product the standard does not reach.</li>
+    <li><strong>auth.idfkit.com</strong>, <code>marks/mark.svg</code>, since identity-2026.1: the hosted widget takes a logo image by URL; the mark cannot be inlined in currentColor or sized by the page. Schema: @stytch/core 2.66.1 (the StyleConfig that @stytch/react 19.5.2 renders).</li>
+    <li><strong>auth.idfkit.com</strong>, <code>font.family.code</code>, since identity-2026.1: the hosted widget takes one fontFamily for all its text; code and labels cannot be set in the label face. Schema: @stytch/core 2.66.1 (the StyleConfig that @stytch/react 19.5.2 renders).</li>
+    <li><strong>auth.idfkit.com</strong>, <code>font.weight.semibold</code>, since identity-2026.1: the hosted widget takes a family, not weights; its buttons and headings render at the provider&#x27;s own weights. Schema: @stytch/core 2.66.1 (the StyleConfig that @stytch/react 19.5.2 renders).</li>
+    <li><strong>auth.idfkit.com</strong>, <code>color.role.focus</code>, since identity-2026.1: the hosted widget draws its own focus ring; the schema exposes no focus colour. Schema: @stytch/core 2.66.1 (the StyleConfig that @stytch/react 19.5.2 renders).</li>
+    <li><strong>auth.idfkit.com</strong>, <code>color.role.link</code>, since identity-2026.1: links inside the hosted widget take the provider&#x27;s default; the schema exposes no link colour. Schema: @stytch/core 2.66.1 (the StyleConfig that @stytch/react 19.5.2 renders).</li>
+    <li><strong>auth.idfkit.com</strong>, <code>family_links</code>, since identity-2026.1: the hosted widget renders no navigation; the page around it carries the family links. Schema: @stytch/core 2.66.1 (the StyleConfig that @stytch/react 19.5.2 renders).</li>
+    <li><strong>auth.idfkit.com</strong>, <code>ownership</code>, since identity-2026.1: the hosted widget renders its own footer; the page around it carries the ownership line. Schema: @stytch/core 2.66.1 (the StyleConfig that @stytch/react 19.5.2 renders).</li>
+    <li><strong>auth.idfkit.com</strong>, <code>motion.duration.base</code>, since identity-2026.1: the hosted widget&#x27;s transitions are the provider&#x27;s; the schema exposes no motion. Schema: @stytch/core 2.66.1 (the StyleConfig that @stytch/react 19.5.2 renders).</li>
+    <li><strong>auth.idfkit.com</strong>, <code>elevation.raised</code>, since identity-2026.1: the hosted widget&#x27;s container has no shadow property. Schema: @stytch/core 2.66.1 (the StyleConfig that @stytch/react 19.5.2 renders).</li>
+    <li><strong>auth.idfkit.com</strong>, <code>space.2</code>, since identity-2026.1: the hosted widget&#x27;s internal spacing is the provider&#x27;s; the schema exposes only the container width. Schema: @stytch/core 2.66.1 (the StyleConfig that @stytch/react 19.5.2 renders).</li>
+  </ul>
+
+  <h2 id="version">This version</h2>
+  <p>This page describes <code>identity-2026.1</code>, cut on 2026-10-31. The standard lives at <a href="https://github.com/idfkit/idfkit-brand">github.com/idfkit/idfkit-brand</a>; every host declares the version it renders in its own repository, and a check at that version fails when a rendered value differs from it. Files for this version: <a href="https://github.com/idfkit/idfkit-brand/releases/tag/identity-2026.1">the release</a>.</p>
+
+  <footer class="page">
+    <span>An idfkit project. MIT License.</span>
+    <span>identity identity-2026.1</span>
+  </footer>
+</main>
+</body>
+</html>
