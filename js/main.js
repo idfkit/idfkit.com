@@ -5,7 +5,7 @@
    lines: heat flows as warm strings, heat loss as cool strings.
 
    Colours come from the identity derivation vendored under brand/
-   (idfkit-brand at identity-2026.1): brand/hero/hero-palette.js
+   (idfkit-brand at identity-2026.2): brand/hero/hero-palette.js
    exports the scene's colours by role, per theme, and this file holds
    no colour literal. The scene follows prefers-reduced-motion: when it
    is set, one still frame is rendered and no animation loop runs
