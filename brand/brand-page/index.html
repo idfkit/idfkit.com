@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>idfkit brand</title>
-<meta name="description" content="The idfkit visual identity: the mark, its rules, the colours in both themes, the typefaces, and the exceptions, at identity-2026.3.">
+<meta name="description" content="The idfkit visual identity: the mark, its rules, the colours in both themes, the typefaces, and the exceptions, at identity-2026.4.">
 <!--
   The brand page (FR-034, research R16). build.py renders it from the standard at the tag; the
   marketing site vendors it unchanged and serves it at /brand/. It expects the css derivation
@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="css/fonts.css">
 <link rel="stylesheet" href="css/motion.css">
 <link rel="stylesheet" href="css/forced-colors.css">
-<!-- idfkit identity identity-2026.3: the favicon set, both theme colours and the social image of https://idfkit.com. Paths are relative to the host's root; the identity-adopt skill rewrites the prefix where a host serves this directory elsewhere. -->
+<!-- idfkit identity identity-2026.4: the favicon set, both theme colours and the social image of https://idfkit.com. Paths are relative to the host's root; the identity-adopt skill rewrites the prefix where a host serves this directory elsewhere. -->
 <link rel="icon" href="/brand/hosts/idfkit.com/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/brand/hosts/idfkit.com/favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="apple-touch-icon" href="/brand/hosts/idfkit.com/apple-touch-icon.png">
@@ -54,9 +54,17 @@
   .specimen .caption span { color: var(--idfkit-color-ink-muted); }
   .no { position: relative; }
   .no .ground::after { content: "incorrect"; position: absolute; top: var(--idfkit-space-1); right: var(--idfkit-space-1); font-family: var(--idfkit-font-code); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--idfkit-color-status-error); }
+  .table-scroll { overflow-x: auto; }
   table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
   th, td { text-align: left; padding: var(--idfkit-space-1) var(--idfkit-space-2); border-bottom: 1px solid var(--idfkit-color-border); vertical-align: top; }
   th { font-weight: var(--idfkit-font-weight-semibold); color: var(--idfkit-color-ink-muted); font-size: 0.8rem; }
+  /* On a phone a role's usage takes its own line under the role, instead of a column too narrow to read. */
+  @media (max-width: 40rem) {
+    .role-table tr { display: grid; grid-template-columns: minmax(0, 1fr) 5.5rem 5.5rem; column-gap: var(--idfkit-space-half); padding-block: var(--idfkit-space-1); border-bottom: 1px solid var(--idfkit-color-border); }
+    .role-table th, .role-table td { padding: 0; border-bottom: 0; }
+    .role-table th:last-child { display: none; }
+    .role-table td:last-child { grid-column: 1 / -1; padding-block-start: var(--idfkit-space-half); color: var(--idfkit-color-ink-muted); }
+  }
   .swatch { display: inline-block; width: 1.25rem; height: 1.25rem; border-radius: var(--idfkit-radius-sm); border: 1px solid var(--idfkit-color-border); vertical-align: middle; margin-right: var(--idfkit-space-1); }
   .type-specimen { font-size: 2rem; line-height: 1.2; margin: var(--idfkit-space-1) 0; }
   .type-specimen.code { font-family: var(--idfkit-font-code); font-size: 1.25rem; }
@@ -83,18 +91,18 @@
   </nav>
   </header>
 
-  <p class="eyebrow">Brand · identity-2026.3</p>
+  <p class="eyebrow">Brand · identity-2026.4</p>
   <h1>The idfkit identity</h1>
-  <p class="lede">One mark, one accent, one pair of typefaces, on every idfkit host and repository. This page describes the standard at <code>identity-2026.3</code>, the version the site you are reading renders; every file here is generated from that tag and can be downloaded from its release.</p>
+  <p class="lede">One mark, one accent, one pair of typefaces, on every idfkit host and repository. This page describes the standard at <code>identity-2026.4</code>, the version the site you are reading renders; every file here is generated from that tag and can be downloaded from its release.</p>
 
   <h2 id="mark">The mark</h2>
   <p>A block with one piece lifted out of its slot: a kit of parts that fit together, as an EnergyPlus model is objects assembled into a building. It is drawn on a 48-unit grid in one colour and is never drawn in two colours, never outlined, never rotated, and never given a gradient. Inline, it takes the colour of the surrounding text.</p>
   <div class="grid">
     <figure class="specimen"><div class="ground split"><img src="brand-page/assets/mark.svg" alt="mark.svg"></div><figcaption class="caption"><strong>mark.svg</strong><span>the mark in currentColor; inline it</span><a href="brand-page/assets/mark.svg" download>download</a></figcaption></figure>
-    <figure class="specimen"><div class="ground dark"><img src="brand-page/assets/mark-on-dark.svg" alt="mark-on-dark.svg"></div><figcaption class="caption"><strong>mark-on-dark.svg</strong><span>fixed ink for dark grounds</span><a href="https://github.com/idfkit/idfkit-brand/releases/download/identity-2026.3/mark-on-dark.svg" download>download</a></figcaption></figure>
-    <figure class="specimen"><div class="ground light"><img src="brand-page/assets/mark-on-light.svg" alt="mark-on-light.svg"></div><figcaption class="caption"><strong>mark-on-light.svg</strong><span>fixed ink for light grounds</span><a href="https://github.com/idfkit/idfkit-brand/releases/download/identity-2026.3/mark-on-light.svg" download>download</a></figcaption></figure>
-    <figure class="specimen"><div class="ground split"><img src="brand-page/assets/tile.svg" alt="tile.svg"></div><figcaption class="caption"><strong>tile.svg</strong><span>the tile: favicons and app icons</span><a href="https://github.com/idfkit/idfkit-brand/releases/download/identity-2026.3/tile.svg" download>download</a></figcaption></figure>
-    <figure class="specimen"><div class="ground split"><img src="brand-page/assets/tile.png" alt="tile.png"></div><figcaption class="caption"><strong>tile.png</strong><span>the tile as a 256 px raster: the fallback image of a README header</span><a href="https://github.com/idfkit/idfkit-brand/releases/download/identity-2026.3/tile.png" download>download</a></figcaption></figure>
+    <figure class="specimen"><div class="ground dark"><img src="brand-page/assets/mark-on-dark.svg" alt="mark-on-dark.svg"></div><figcaption class="caption"><strong>mark-on-dark.svg</strong><span>fixed ink for dark grounds</span><a href="https://github.com/idfkit/idfkit-brand/releases/download/identity-2026.4/mark-on-dark.svg" download>download</a></figcaption></figure>
+    <figure class="specimen"><div class="ground light"><img src="brand-page/assets/mark-on-light.svg" alt="mark-on-light.svg"></div><figcaption class="caption"><strong>mark-on-light.svg</strong><span>fixed ink for light grounds</span><a href="https://github.com/idfkit/idfkit-brand/releases/download/identity-2026.4/mark-on-light.svg" download>download</a></figcaption></figure>
+    <figure class="specimen"><div class="ground split"><img src="brand-page/assets/tile.svg" alt="tile.svg"></div><figcaption class="caption"><strong>tile.svg</strong><span>the tile: favicons and app icons</span><a href="https://github.com/idfkit/idfkit-brand/releases/download/identity-2026.4/tile.svg" download>download</a></figcaption></figure>
+    <figure class="specimen"><div class="ground split"><img src="brand-page/assets/tile.png" alt="tile.png"></div><figcaption class="caption"><strong>tile.png</strong><span>the tile as a 256 px raster: the fallback image of a README header</span><a href="https://github.com/idfkit/idfkit-brand/releases/download/identity-2026.4/tile.png" download>download</a></figcaption></figure>
     <figure class="specimen"><div class="ground split"><img src="brand-page/assets/mark-small.svg" alt="mark-small.svg"></div><figcaption class="caption"><strong>mark-small.svg</strong><span>the 16-unit redraw for 16 and 32 px</span><a href="brand-page/assets/mark-small.svg" download>download</a></figcaption></figure>
   </div>
 
@@ -109,8 +117,8 @@
   <p>The lockup is the mark's ink at 80 units, sitting on the wordmark's baseline, with a gap of 0.3 of the mark's height. The wordmark is "idfkit", lowercase, in Inter ExtraBold at -0.035 em, outlined. The name is written <strong>idfkit</strong>, in lowercase, everywhere it appears, including at the start of a sentence.</p>
   <p>A product or property name appears only inside the lockup: the mark, the name, a divider, and the property name set in the label face. The property is told apart in words, never by a hue of its own.</p>
   <div class="grid">
-    <figure class="specimen"><div class="ground dark"><img src="brand-page/assets/lockup-on-dark.svg" alt="lockup-on-dark.svg"></div><figcaption class="caption"><strong>lockup-on-dark.svg</strong><span>the lockup for dark grounds</span><a href="https://github.com/idfkit/idfkit-brand/releases/download/identity-2026.3/lockup-on-dark.svg" download>download</a></figcaption></figure>
-    <figure class="specimen"><div class="ground light"><img src="brand-page/assets/lockup-on-light.svg" alt="lockup-on-light.svg"></div><figcaption class="caption"><strong>lockup-on-light.svg</strong><span>the lockup for light grounds</span><a href="https://github.com/idfkit/idfkit-brand/releases/download/identity-2026.3/lockup-on-light.svg" download>download</a></figcaption></figure>
+    <figure class="specimen"><div class="ground dark"><img src="brand-page/assets/lockup-on-dark.svg" alt="lockup-on-dark.svg"></div><figcaption class="caption"><strong>lockup-on-dark.svg</strong><span>the lockup for dark grounds</span><a href="https://github.com/idfkit/idfkit-brand/releases/download/identity-2026.4/lockup-on-dark.svg" download>download</a></figcaption></figure>
+    <figure class="specimen"><div class="ground light"><img src="brand-page/assets/lockup-on-light.svg" alt="lockup-on-light.svg"></div><figcaption class="caption"><strong>lockup-on-light.svg</strong><span>the lockup for light grounds</span><a href="https://github.com/idfkit/idfkit-brand/releases/download/identity-2026.4/lockup-on-light.svg" download>download</a></figcaption></figure>
     <figure class="specimen"><div class="ground dark"><img src="brand-page/assets/lockup-developers.svg" alt="idfkit Developers"></div><figcaption class="caption"><strong>idfkit Developers</strong><span>the property lockup of developers.idfkit.com</span></figcaption></figure>
     <figure class="specimen"><div class="ground dark"><img src="brand-page/assets/lockup-mcp.svg" alt="idfkit MCP"></div><figcaption class="caption"><strong>idfkit MCP</strong><span>the property lockup of mcp.idfkit.com</span></figcaption></figure>
     <figure class="specimen"><div class="ground dark"><img src="brand-page/assets/lockup-docs.svg" alt="idfkit EnergyPlus docs"></div><figcaption class="caption"><strong>idfkit EnergyPlus docs</strong><span>the property lockup of docs.idfkit.com</span></figcaption></figure>
@@ -133,7 +141,7 @@
   <p>Two themes, light and dark, following the visitor's system preference. One accent, the same hue in both themes and one step apart, for the current link, the primary action and focus. Every pair below is measured by the standard's validator at every release; the ratios are WCAG 2.1 contrast, and each meets its threshold in both themes.</p>
   <div class="gradient" role="img" aria-label="The brand sweep, blue to violet to red"></div>
   <p>The sweep is a surface for nothing that must be read: hairlines, a glow, the hero's bloom.</p>
-  <table>
+  <div class="table-scroll"><table class="role-table">
     <thead><tr><th>Role</th><th>Light</th><th>Dark</th><th>Usage</th></tr></thead>
     <tbody>
       <tr><td>ground</td><td><span class="swatch" style="background:#ffffff"></span><code>#ffffff</code></td><td><span class="swatch" style="background:#060a14"></span><code>#060a14</code></td><td>The page background.</td></tr>
@@ -154,9 +162,9 @@
       <tr><td>status.warning</td><td><span class="swatch" style="background:#b45309"></span><code>#b45309</code></td><td><span class="swatch" style="background:#f59e0b"></span><code>#f59e0b</code></td><td>A warning message or state, as text on the ground.</td></tr>
       <tr><td>status.success</td><td><span class="swatch" style="background:#15803d"></span><code>#15803d</code></td><td><span class="swatch" style="background:#22c55e"></span><code>#22c55e</code></td><td>A success message or state, as text on the ground.</td></tr>
     </tbody>
-  </table>
+  </table></div>
   <h3>Measured pairs</h3>
-  <table>
+  <div class="table-scroll"><table>
     <thead><tr><th>Pair</th><th>Threshold</th><th>Light</th><th>Dark</th></tr></thead>
     <tbody>
       <tr><td>ink on ground</td><td>4.5:1</td><td><span class="ratio-pass">18.93</span></td><td><span class="ratio-pass">16.05</span></td></tr>
@@ -185,20 +193,20 @@
       <tr><td>status.success on ground</td><td>4.5:1</td><td><span class="ratio-pass">5.02</span></td><td><span class="ratio-pass">8.68</span></td></tr>
       <tr><td>status.success on surface</td><td>4.5:1</td><td><span class="ratio-pass">4.79</span></td><td><span class="ratio-pass">8.19</span></td></tr>
     </tbody>
-  </table>
+  </table></div>
 
   <h2 id="type">Typefaces</h2>
   <p><strong>Inter</strong> for text, at the weights 400, 500, 600, 700, 800; <strong>"JetBrains Mono"</strong> for code and labels, at 400, 500. Both are served from each host's own origin, as Latin subsets under the SIL Open Font License, with the fallback stacks below. No host loads a font from a third party.</p>
   <p class="type-specimen">Modern tools for building energy simulation</p>
   <p class="type-specimen code">load_idf("office.idf")</p>
-  <table>
+  <div class="table-scroll"><table>
     <thead><tr><th>Role</th><th>Family</th><th>Fallback stack</th></tr></thead>
     <tbody>
       <tr><td>Text</td><td>Inter</td><td><code>Inter, system-ui, "-apple-system", "Segoe UI", Roboto, sans-serif</code></td></tr>
       <tr><td>Code and labels</td><td>"JetBrains Mono"</td><td><code>"JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace</code></td></tr>
     </tbody>
-  </table>
-  <p>The files are in the <code>css.tar.gz</code> archive of the <a href="https://github.com/idfkit/idfkit-brand/releases/tag/identity-2026.3">identity-2026.3 release</a>, under <code>fonts/</code>, with their licences.</p>
+  </table></div>
+  <p>The files are in the <code>css.tar.gz</code> archive of the <a href="https://github.com/idfkit/idfkit-brand/releases/tag/identity-2026.4">identity-2026.4 release</a>, under <code>fonts/</code>, with their licences.</p>
 
   <h2 id="family">The family</h2>
   <p>Every idfkit host carries these links, in this order, and marks the one you are on:</p>
@@ -231,11 +239,11 @@
   </ul>
 
   <h2 id="version">This version</h2>
-  <p>This page describes <code>identity-2026.3</code>, cut on 2026-10-31. The standard lives at <a href="https://github.com/idfkit/idfkit-brand">github.com/idfkit/idfkit-brand</a>; every host declares the version it renders in its own repository, and a check at that version fails when a rendered value differs from it. Files for this version: <a href="https://github.com/idfkit/idfkit-brand/releases/tag/identity-2026.3">the release</a>.</p>
+  <p>This page describes <code>identity-2026.4</code>, cut on 2026-11-01. The standard lives at <a href="https://github.com/idfkit/idfkit-brand">github.com/idfkit/idfkit-brand</a>; every host declares the version it renders in its own repository, and a check at that version fails when a rendered value differs from it. Files for this version: <a href="https://github.com/idfkit/idfkit-brand/releases/tag/identity-2026.4">the release</a>.</p>
 
   <footer class="page">
     <span>An idfkit project.</span>
-    <span>identity identity-2026.3</span>
+    <span>identity identity-2026.4</span>
   </footer>
 </main>
 </body>
