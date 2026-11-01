@@ -138,7 +138,7 @@ img {
 /* --- Navigation --- */
 .nav {
   position: fixed;
-  top: 41px; /* below the beta bar */
+  top: var(--beta-bar-height, 41px); /* below the beta bar */
   left: 0;
   right: 0;
   z-index: 100;
@@ -283,7 +283,7 @@ img {
   text-align: left;
   max-width: 700px;
   padding: 0 24px;
-  padding-top: 113px; /* beta bar (41px) + nav (72px) */
+  padding-top: calc(var(--beta-bar-height, 41px) + 72px); /* beta bar + nav */
   margin-left: max(24px, 6vw);
 }
 
@@ -452,7 +452,7 @@ img {
 
 /* --- Section Base --- */
 .section, .hero {
-  scroll-margin-top: 113px; /* beta bar (41px) + nav (72px) */
+  scroll-margin-top: calc(var(--beta-bar-height, 41px) + 72px); /* beta bar + nav */
 }
 
 .section {

@@ -141,6 +141,18 @@
       <span class="beta-bar-text">These tools are in active development. Try them out and <a href="#beta-feedback">share your feedback</a>.</span>
     </div>
   </div>
+  <!-- The bar wraps on a phone. The navigation below it reads its height here, before it first paints, and again when the width or the font changes it. -->
+  <script>
+    (function () {
+      var bar = document.querySelector('.beta-bar');
+      var root = document.documentElement;
+      function read() {
+        root.style.setProperty('--beta-bar-height', bar.getBoundingClientRect().height + 'px');
+      }
+      read();
+      if ('ResizeObserver' in window) new ResizeObserver(read).observe(bar);
+    })();
+  </script>
 
   <!-- Navigation -->
   <nav class="nav" id="nav">
