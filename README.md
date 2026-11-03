@@ -33,7 +33,6 @@ brand/css/                 tokens, self-hosted fonts, motion and forced-colours 
 brand/hero/                the hero scene's palette, by role, per theme
 brand/hosts/idfkit.com/    favicons, the social image, the manifest and head.html
 brand/brand-page/          the brand page and its images
-brand/index.html           a copy of brand/brand-page/index.html, so that /brand/ resolves
 ```
 
 Rules that follow from the standard:
