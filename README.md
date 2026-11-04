@@ -1,8 +1,8 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/idfkit/idfkit-brand/identity-2026.4/marks/mark-on-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/idfkit/idfkit-brand/identity-2026.4/marks/mark-on-light.svg">
-    <img alt="idfkit" width="72" src="https://raw.githubusercontent.com/idfkit/idfkit-brand/identity-2026.4/marks/tile.png">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/idfkit/idfkit-brand/identity-2026.5/marks/mark-on-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/idfkit/idfkit-brand/identity-2026.5/marks/mark-on-light.svg">
+    <img alt="idfkit" width="72" src="https://raw.githubusercontent.com/idfkit/idfkit-brand/identity-2026.5/marks/tile.png">
   </picture>
 </p>
 
@@ -32,7 +32,6 @@ brand/identity.json        the declared tag (the only hand-written file under br
 brand/css/                 tokens, self-hosted fonts, motion and forced-colours rules
 brand/hero/                the hero scene's palette, by role, per theme
 brand/hosts/idfkit.com/    favicons, the social image, the manifest and head.html
-brand/brand-page/          the brand page and its images
 ```
 
 Rules that follow from the standard:
