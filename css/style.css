@@ -3,7 +3,7 @@
 
    Every colour, typeface, easing and duration is read from the idfkit
    identity derivation vendored under brand/ (idfkit-brand at
-   identity-2026.4). index.html links brand/css/tokens.css, fonts.css,
+   identity-2026.5). index.html links brand/css/tokens.css, fonts.css,
    motion.css and forced-colors.css before this file. This file declares
    no colour, font family or easing literal: the site-level aliases in
    :root name the --idfkit-* properties they resolve to, and every tint
