@@ -1,16 +1,33 @@
 /* ============================================
-   idfkit Landing Page — 3D Line Animation
+   idfkit.com hero scene and UI interactions
 
-   A building "shoebox" energy model rendered
-   as animated wireframe lines. Heat flows are
-   shown as red/warm strings; cold flows as
-   blue/cool strings — visualizing thermal
-   energy transfer through the building envelope.
+   A building "shoebox" energy model rendered as animated wireframe
+   lines: heat flows as warm strings, heat loss as cool strings.
+
+   Colours come from the identity derivation vendored under brand/
+   (idfkit-brand at identity-2026.4): brand/hero/hero-palette.js
+   exports the scene's colours by role, per theme, and this file holds
+   no colour literal. The scene follows prefers-reduced-motion: when it
+   is set, one still frame is rendered and no animation loop runs
+   (FR-017). This file is an ES module for that import.
    ============================================ */
+
+import { heroPalette } from '../brand/hero/hero-palette.js';
+
+/** The theme the page renders: a data-theme control first, then the media query. */
+function currentTheme() {
+  const declared = document.documentElement.dataset.theme;
+  if (declared === 'light' || declared === 'dark') return declared;
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
 
 (function () {
   const canvas = document.getElementById('hero-canvas');
   if (!canvas) return;
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const palette = heroPalette[currentTheme()];
+  const toColor = (hex) => new THREE.Color(hex);
 
   // ── WebGL support check ─────────────────────────────
   try {
@@ -34,7 +51,7 @@
   });
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.setClearColor(0x000000, 0);
+  renderer.setClearColor(toColor(palette.ground), 0);
 
   camera.position.set(0, 2.5, 14);
   camera.lookAt(0, 0, 0);
@@ -44,25 +61,26 @@
   // ── Mouse ──────────────────────────────────────────
   const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
 
-  // ── Color palette: reds→blues for heat→cold ────────
+  // ── Colours: the hero palette's roles, warm for heat gain and cool for heat loss ──
+  // Each entry is a role of the palette or a blend of two roles; nothing here is a literal.
   const C = {
     // Warm (heat gain / solar)
-    warmHot:   new THREE.Color(0xff2a6d),  // neon pink-red
-    warm:      new THREE.Color(0xff6b2c),  // electric orange
-    warmMid:   new THREE.Color(0xffc01d),  // vivid amber
-    warmGlow:  new THREE.Color(0xff8a3d),  // warm glow
+    warmHot:   toColor(palette.warm),
+    warm:      toColor(palette.warm).lerp(toColor(palette.warmSoft), 0.5),
+    warmMid:   toColor(palette.warmSoft),
+    warmGlow:  toColor(palette.warmSoft).lerp(toColor(palette.warm), 0.25),
 
     // Cool (heat loss / cold)
-    coolDeep:  new THREE.Color(0x2750ff),  // neon deep blue
-    cool:      new THREE.Color(0x26a8ff),  // electric cyan-blue
-    coolLight: new THREE.Color(0x4dd6ff),  // bright aqua
-    coolIce:   new THREE.Color(0x8de9ff),  // icy neon
+    coolDeep:  toColor(palette.cool),
+    cool:      toColor(palette.cool).lerp(toColor(palette.coolSoft), 0.35),
+    coolLight: toColor(palette.coolSoft),
+    coolIce:   toColor(palette.coolSoft).lerp(toColor(palette.ink), 0.3),
 
     // Neutral / structure
-    structure: new THREE.Color(0x94a3b8),  // slate
-    structDim: new THREE.Color(0x475569),  // dim slate
-    grid:      new THREE.Color(0x1e293b),  // dark slate
-    white:     new THREE.Color(0xe2e8f0),  // near white
+    structure: toColor(palette.structure),
+    structDim: toColor(palette.structureDim),
+    grid:      toColor(palette.grid),
+    white:     toColor(palette.ink),
   };
 
   // ── Main group ─────────────────────────────────────
@@ -762,6 +780,7 @@
   // ============================================================
   let t0 = null;
   let sy = 0;
+  let frameId = 0;
 
   // Fade-in logic
   function fadeIn(obj, elapsed) {
@@ -830,7 +849,7 @@
 
   // ── RENDER LOOP ────────────────────────────────────
   function loop(ts) {
-    requestAnimationFrame(loop);
+    frameId = requestAnimationFrame(loop);
     if (!t0) t0 = ts;
     const elapsed = (ts - t0) / 1000;
 
@@ -915,7 +934,38 @@
     renderer.render(scene, camera);
   }
 
-  loop(0);
+  // ── Reduced motion: one still frame, no loop (FR-017) ──
+  function renderStill() {
+    world.traverse((obj) => {
+      if (obj.material && obj.userData && obj.userData.target !== undefined) {
+        obj.material.opacity = obj.userData.target;
+      }
+    });
+    world.rotation.y = 0.2;
+    world.rotation.x = -0.08;
+    world.position.x = sceneOffsetX;
+    if (telemContainer) {
+      telemContainer.classList.add('visible');
+      telemContainer.style.opacity = 0.55;
+    }
+    renderer.render(scene, camera);
+  }
+
+  function start() {
+    if (reducedMotion.matches) {
+      if (frameId) cancelAnimationFrame(frameId);
+      frameId = 0;
+      renderStill();
+      return;
+    }
+    if (!frameId) {
+      t0 = null;
+      frameId = requestAnimationFrame(loop);
+    }
+  }
+
+  start();
+  reducedMotion.addEventListener('change', start);
 
   // ── Events ─────────────────────────────────────────
   window.addEventListener('mousemove', (e) => {
@@ -930,6 +980,7 @@
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
     renderer.setSize(w, h);
+    if (reducedMotion.matches) renderStill();
   });
 })();
 
@@ -984,6 +1035,42 @@
       const t = document.querySelector(`[data-panel="${btn.dataset.tab}"]`);
       if (t) t.classList.add('active');
     });
+  });
+})();
+
+// ── Engine demo: load the live simulation on request ─────────────────
+// The demo downloads ~10 MB of compiled engine on a cold visit, so it is
+// never fetched for a visitor who only scrolled past it.
+(function () {
+  const stage = document.getElementById('engine-stage');
+  const btn = document.getElementById('engine-run-btn');
+  if (!stage || !btn) return;
+
+  let loaded = false;
+
+  btn.addEventListener('click', () => {
+    if (loaded) return;
+    loaded = true;
+
+    btn.disabled = true;
+    btn.textContent = 'Loading the engine…';
+
+    // The stage hugs the poster until now; give it the demo's proportions.
+    stage.classList.add('is-live');
+
+    const frame = document.createElement('iframe');
+    frame.src = stage.dataset.embed;
+    frame.title = stage.dataset.title || 'In-browser building energy simulation';
+    frame.loading = 'eager';
+    frame.allow = 'clipboard-write';
+    frame.referrerPolicy = 'no-referrer-when-downgrade';
+
+    frame.addEventListener('load', () => {
+      const poster = stage.querySelector('.engine-poster');
+      if (poster) poster.remove();
+    });
+
+    stage.appendChild(frame);
   });
 })();
 
