@@ -12,7 +12,7 @@ The idfkit website: the front door to the toolkit, the editor, the server and th
 
 [idfkit](https://idfkit.com) · [Developers](https://developers.idfkit.com) · [EnergyPlus docs](https://docs.idfkit.com) · [Envelop](https://app.idfkit.com) · [MCP](https://mcp.idfkit.com) · [Shoebox](https://shoebox.idfkit.com) · [GitHub](https://github.com/idfkit)
 
-[![Identity](https://github.com/idfkit/idfkit.com/actions/workflows/check-identity.yml/badge.svg)](https://github.com/idfkit/idfkit.com/actions/workflows/check-identity.yml) [![License](https://img.shields.io/github/license/idfkit/idfkit.com)](https://github.com/idfkit/idfkit.com#license)
+[![Identity](https://github.com/idfkit/idfkit.com/actions/workflows/check-identity.yml/badge.svg)](https://github.com/idfkit/idfkit.com/actions/workflows/check-identity.yml) [![License](https://img.shields.io/github/license/idfkit/idfkit.com)](https://github.com/idfkit/idfkit.com)
 
 ## Stack
 
@@ -29,22 +29,27 @@ derived file copied from the tag's build:
 
 ```
 brand/identity.json        the declared tag (the only hand-written file under brand/)
-brand/css/                 tokens, self-hosted fonts, motion and forced-colours rules
+brand/css/                 tokens, self-hosted fonts, motion and forced-colours rules,
+                           and the family-links and ownership fragments
 brand/hero/                the hero scene's palette, by role, per theme
-brand/hosts/idfkit.com/    favicons, the social image, the manifest and head.html
+brand/hosts/idfkit.com/    favicons, the social image, the manifest, head.html,
+                           and the lockup (lockup.svg, lockup.css)
 ```
 
 Rules that follow from the standard:
 
 1. Edit nothing under `brand/`. A vendored file is served as the tag's build
    wrote it; `.github/workflows/check-identity.yml` compares every file against
-   the tag and fails on a byte that differs.
+   the tag and fails on a byte that differs, except rasters, which it compares
+   by decoded pixels.
 2. `css/style.css`, `js/main.js` and `index.html` declare no colour, font family
    or easing literal. They read `--idfkit-*` properties from `brand/css/tokens.css`
    and, for the hero scene, the roles exported by `brand/hero/hero-palette.js`.
    The check scans these files for stray literals.
-3. The mark is inlined in `currentColor` beside the wordmark. There is no
-   stand-in glyph.
+3. The lockup is drawn by the vendored `brand/hosts/idfkit.com/lockup.css`,
+   which `index.html` loads: an element with the class `idfkit-lockup` paints
+   `lockup.svg` as a CSS mask in the surrounding text colour. The page does not
+   draw the mark by hand, and there is no stand-in glyph.
 4. Both themes come from the derivation: the media query decides, and a
    `data-theme` attribute on `<html>` overrides it.
 5. `index.html` pastes `brand/hosts/idfkit.com/head.html` into its head, since a
@@ -57,10 +62,10 @@ and runs the check.
 
 ## The in-browser simulation demo
 
-The "In the browser" section embeds
+The "In the Browser" section (`#browser`) embeds
 [shoebox.idfkit.com](https://shoebox.idfkit.com), which runs the simulation
-engine as WebAssembly on the visitor's machine. That costs about 10 MB on a
-cold visit, so the iframe is **never** created on page load: the poster is a
+engine as WebAssembly on the visitor's machine. The compiled engine is a large
+download on a cold visit, so the iframe is **never** created on page load: the poster is a
 static SVG, and `js/main.js` only appends the iframe when the Run button is
 pressed. Keep it that way.
 
@@ -75,10 +80,15 @@ wide layout letters at four pixels on a phone.
 No build tools required. Edit the files and push to deploy.
 
 ```
-index.html    page markup
-css/style.css styles, reading the identity tokens
-js/main.js    3D animation (an ES module) and UI interactions
-brand/        the vendored identity derivation; see Visual identity above
+index.html          page markup
+css/style.css       styles, reading the identity tokens
+js/main.js          3D animation (an ES module) and UI interactions
+brand/              the vendored identity derivation; see Visual identity above
+docs/analytics.md   the analytics notes
+CNAME, .nojekyll    GitHub Pages configuration
+robots.txt          crawler rules
+sitemap.xml         the sitemap
+.github/workflows/  the identity check and the EnergyPlus adoption workflow
 ```
 
 ## Analytics
@@ -86,7 +96,3 @@ brand/        the vendored identity derivation; see Visual identity above
 The site uses privacy-first, cookieless, free
 [GoatCounter](https://www.goatcounter.com) analytics. See
 [docs/analytics.md](docs/analytics.md) for details.
-
-## License
-
-MIT
